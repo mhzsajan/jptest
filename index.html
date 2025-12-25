@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Skill Point Education Consultancy - SSW Mock Test Platform">
+  <title>Skill Point Education Consultancy | SSW Mock Test Platform</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <!-- External CSS - FIXED PATHS -->
+  <link rel="stylesheet" href="data/css/main.css">
+  <link rel="stylesheet" href="data/css/test.css">
+  
+  <style>
+    /* Additional styles for new elements */
+    .empty-space {
+      height: 20px;
+      visibility: hidden;
+    }
+
+    .dropdown-container {
+      margin-bottom: 0.75rem;
+    }    .dropdown-header {
+      background: transparent;
+      padding: 0.75rem 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+      border: none;
+      width: 100%;
+      text-align: left;
+      font-size: 1rem;
+    }
+
+    .dropdown-header:hover {
+      background: rgba(0,0,0,0.02);
+    }
+
+    .dark-mode .dropdown-header:hover {
+      background: rgba(255,255,255,0.02);
+    }
+
+    .dropdown-title {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--on-surface);
+    }
+
+    .dropdown-icon {
+      transition: transform 0.3s ease;
+    }
+
+    .dropdown-icon.rotated {
+      transform: rotate(180deg);
+    }
+
+    .dropdown-content {
+      display: none;
+      background: transparent;
+    }
+
+    .dropdown-content.show {
+      display: block;
+    }
+
+    .dropdown-content .test-item {
+      border: none;
+      border-radius: 0;
+      margin: 0;
+    }
+
+    .dark-mode .dropdown-content .test-item {
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .dropdown-content .test-item:last-child {
+      border-bottom: none;
+    }
+
+    .instructions-section {
+      background: #f5f5f5;
+      border-radius: var(--border-radius);
+      padding: 0.6rem;
+      margin-bottom: 0.75rem;
+      box-shadow: var(--shadow);
+      border-left: 4px solid #d32f2f;
+      border-right: 4px solid #d32f2f;
+    }
+
+    .instructions-title {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      color: #7b1fa2;
+      margin-bottom: 0.6rem;
+      font-size: 1.05rem;
+    }
+
+    .instructions-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .instruction-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4rem;
+      padding: 0.35rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .instruction-icon { margin-top: 0.05rem; }
+    .instruction-text { font-size: 0.95rem; }
+
+    .dark-mode .instruction-item {
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .instruction-item:last-child {
+      border-bottom: none;
+    }
+
+    .instruction-icon {
+      color: var(--primary);
+      margin-top: 0.2rem;
+      flex-shrink: 0;
+    }
+
+    .instruction-text {
+      flex: 1;
+      color: var(--on-surface);
+      font-weight: bold;
+    }
+
+    .instruction-text strong {
+      color: var(--primary);
+    }
+
+    /* Different colors for each instruction */
+    .instruction-item:nth-child(1) .instruction-text strong {
+      color: #d32f2f; /* Red for Password */
+    }
+
+    .instruction-item:nth-child(2) .instruction-text strong {
+      color: #f57c00; /* Orange for Complete in one sitting */
+    }
+
+    .instruction-item:nth-child(3) .instruction-text strong {
+      color: #1976d2; /* Blue for Immediate results */
+    }
+
+    .instruction-item:nth-child(4) .instruction-text strong {
+      color: #388e3c; /* Green for Contact us */
+    }
+
+    /* Category-specific accent colors */
+    .category-card { 
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    /* Food Service - Blue */
+    .category-card.category-food, .category-card:nth-child(1) {
+      background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%) !important;
+      border: 1px solid #e0e0e0 !important;
+      border-left: 6px solid #1565c0 !important;
+    }
+    .category-card.category-food .category-header, .category-card:nth-child(1) .category-header {
+      background-color: #1565c0 !important;
+      color: white !important;
+      border-left: none !important;
+    }
+
+    /* Agriculture - Green */
+    .category-card.category-agriculture {
+      background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%) !important;
+      border: 1px solid #e0e0e0 !important;
+      border-left: 6px solid #388e3c !important;
+    }
+    .category-card.category-agriculture .category-header {
+      background-color: #388e3c !important;
+      color: white !important;
+      border-left: none !important;
+    }
+
+    /* Nursing Care - Pink/Magenta */
+    .category-card.category-nursing {
+      background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%) !important;
+      border: 1px solid #e0e0e0 !important;
+      border-left: 6px solid #d81b60 !important;
+    }
+    .category-card.category-nursing .category-header {
+      background-color: #d81b60 !important;
+      color: white !important;
+      border-left: none !important;
+    }
+
+    /* JFT Basic - Purple */
+    .category-card.category-jft {
+      background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%) !important;
+      border: 1px solid #e0e0e0 !important;
+      border-left: 6px solid #7b1fa2 !important;
+      border-right: 6px solid #7b1fa2 !important;
+    }
+    .category-card.category-jft .category-header {
+      background-color: #7b1fa2 !important;
+      color: white !important;
+      border-left: none !important;
+    }
+
+    /* Ground Handling - Teal */
+    .category-card.category-ground-handling {
+      background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%) !important;
+      border: 1px solid #e0e0e0 !important;
+      border-left: 6px solid #00897b !important;
+    }
+    .category-card.category-ground-handling .category-header {
+      background-color: #00897b !important;
+      color: white !important;
+      border-left: none !important;
+    }
+
+    /* Building Cleaning - Red */
+    .category-card.category-building-cleaning {
+      background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%) !important;
+      border: 1px solid #e0e0e0 !important;
+      border-left: 6px solid #c62828 !important;
+      border-right: 6px solid #c62828 !important;
+    }
+    .category-card.category-building-cleaning .category-header {
+      background-color: #c62828 !important;
+      color: white !important;
+      border-left: none !important;
+    }
+
+    /* Hover effect for all cards */
+    .category-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+
+    /* Responsive grid layout */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1200px) {
+      .category-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 900px) {
+      .category-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .category-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Make category cards compact */
+    .category-card {
+      padding: 0.25rem !important;
+      border-radius: 8px !important;
+      background: #f5f5f5 !important;
+    }
+
+    .dark-mode .category-card {
+      background: #212121 !important;
+    }
+
+    .category-card .category-header {
+      padding: 0.25rem 0.3rem !important;
+      border-radius: 5px !important;
+      font-size: 1.15rem !important; /* slightly larger header text */
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      gap: 0.45rem !important;
+      text-align: center !important;
+    }
+
+    /* Make header icon and title larger (inline override) */
+    .category-card .category-header .category-icon {
+      font-size: 32px !important;
+      line-height: 1 !important;
+      display: block !important;
+    }
+    .category-card .category-header .category-title {
+      font-size: 1.25rem !important;
+      margin: 0 !important;
+    }
+
+    .category-card .category-body { padding: 0.25rem 0.3rem !important; }
+
+    .category-card .test-item { padding: 0.3rem !important; gap: 0.3rem !important; }
+
+    /* Increase category test text sizes only (buttons unchanged) */
+    .category-card .test-name { font-size: 1.05rem !important; }
+    .category-card .test-details, .category-card .test-duration { font-size: 0.95rem !important; opacity: 0.95; }
+
+  </style>
+</head>
+
+<body id="page-top">
+  <!-- Skip to main content link for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Brand Header -->
+  <header class="brand-header">
+    <h1 class="brand-title">Skill Point Education Consultancy</h1>
+    <p class="brand-subtitle"><strong>Kathmandu, NewPlaza.</strong></p>
+    <p class="section-title">Japan SSW Mock Test Platform</p>
+    <!-- Homepage counters removed (visitor/test-taken counters disabled) -->
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content" id="main-content">
+    <!-- Instructions Section -->
+    <section class="instructions-section" aria-labelledby="instructions-title">
+      <h3 class="instructions-title" id="instructions-title">
+        <span class="material-icons" aria-hidden="true">info</span>
+        Test Instructions
+      </h3>
+      
+      <ul class="instructions-list">
+        <li class="instruction-item">
+          <span class="material-icons instruction-icon" aria-hidden="true">lock</span>
+          <div class="instruction-text">
+            <strong>Password:</strong> Contact <strong>Skill Point Education Consultancy</strong> to verify your enrollment in the consultancy and recieve the test password.
+          </div>
+        </li>
+        
+        <li class="instruction-item">
+          <span class="material-icons instruction-icon" aria-hidden="true">schedule</span>
+          <div class="instruction-text">
+            <strong>Complete in one sitting:</strong> Try to complete the test in one sitting.
+          </div>
+        </li>
+        
+        <li class="instruction-item">
+          <span class="material-icons instruction-icon" aria-hidden="true">visibility</span>
+          <div class="instruction-text">
+            <strong>Immediate results:</strong> Your scores will be displayed immediately after test completion.
+          </div>
+        </li>
+        
+        <li class="instruction-item">
+          <span class="material-icons instruction-icon" aria-hidden="true">support_agent</span>
+          <div class="instruction-text">
+            <strong>Contact us:</strong> For any issues, support, suggestions, or to report test corrections, <a href="https://wa.me/9779860172118" target="_blank" rel="noopener" style="color: var(--primary); font-weight: 600; text-decoration: none;">contact here</a>.
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Test Categories Section -->
+    <section class="categories-container" aria-labelledby="categories-title">
+      <h3 class="section-title" id="categories-title">Available Test Categories</h3>
+      
+      <div class="category-grid">
+        <!-- Food Service Category -->
+        <div class="category-card">
+          <div class="category-header">
+            <span class="material-icons category-icon" aria-hidden="true">restaurant</span>
+            <h4 class="category-title">Food Service</h4>
+          </div>
+          <div class="category-body">
+            <div class="test-item">
+              <div class="test-info">
+                <div class="test-name">Food Service Test</div>
+                <div class="test-details">•52 Questions</div>
+                <div class="test-duration">
+                  <span class="material-icons" style="font-size: 16px;">schedule</span>
+                  60 minutes
+                </div>
+              </div>
+              <a href="tests/food-service/index.html" class="btn-success">
+                <span class="material-icons" aria-hidden="true">play_arrow</span>
+                Start
+              </a>
+            </div>
+            <!-- Empty space for consistent layout -->
+            <div class="empty-space"></div>
+            <div class="empty-space"></div>
+          </div>
+        </div>
+
+        <!-- Agriculture Category -->
+        <div class="category-card category-agriculture">
+          <div class="category-header">
+            <span class="material-icons category-icon" aria-hidden="true">agriculture</span>
+            <h4 class="category-title">Agriculture</h4>
+          </div>
+          <div class="category-body">
+            <div class="test-item">
+              <div class="test-info">
+                <div class="test-name">Agriculture Test</div>
+                <div class="test-details">•45 Questions</div>
+                <div class="test-duration">
+                  <span class="material-icons" style="font-size: 16px;">schedule</span>
+                  50 minutes
+                </div>
+              </div>
+              <a href="tests/agriculture/index.html" class="btn-success">
+                <span class="material-icons" aria-hidden="true">play_arrow</span>
+                Start
+              </a>
+            </div>
+            <!-- Empty space for consistent layout -->
+            <div class="empty-space"></div>
+            <div class="empty-space"></div>
+          </div>
+        </div>
+
+        <!-- Ground Handling Category -->
+        <div class="category-card category-ground-handling">
+          <div class="category-header">
+            <span class="material-icons category-icon" aria-hidden="true">local_shipping</span>
+            <h4 class="category-title">Ground Handling</h4>
+          </div>
+          <div class="category-body">
+            <div class="test-item">
+              <div class="test-info">
+                <div class="test-name">Ground Handling Test</div>
+                <div class="test-details">•8 Questions</div>
+                <div class="test-duration">
+                  <span class="material-icons" style="font-size: 16px;">schedule</span>
+                  15 minutes
+                </div>
+              </div>
+              <button class="btn-success" disabled style="opacity: 0.5; cursor: not-allowed;">
+                <span class="material-icons" aria-hidden="true">schedule</span>
+                Coming Soon
+              </button>
+            </div>
+            <div class="empty-space"></div>
+            <div class="empty-space"></div>
+          </div>
+        </div>
+
+        <!-- Building Cleaning Category -->
+        <div class="category-card category-building-cleaning">
+          <div class="category-header">
+            <span class="material-icons category-icon" aria-hidden="true">cleaning_services</span>
+            <h4 class="category-title">Building Cleaning</h4>
+          </div>
+          <div class="category-body">
+            <div class="test-item">
+              <div class="test-info">
+                <div class="test-name">Building Cleaning Test</div>
+                <div class="test-details">•7 Questions</div>
+                <div class="test-duration">
+                  <span class="material-icons" style="font-size: 16px;">schedule</span>
+                  12 minutes
+                </div>
+              </div>
+              <button class="btn-success" disabled style="opacity: 0.5; cursor: not-allowed;">
+                <span class="material-icons" aria-hidden="true">schedule</span>
+                Coming Soon
+              </button>
+            </div>
+            <div class="empty-space"></div>
+            <div class="empty-space"></div>
+          </div>
+        </div>
+
+        <!-- Nursing Care Category -->
+        <div class="category-card category-nursing">
+          <div class="category-header">
+            <span class="material-icons category-icon" aria-hidden="true">local_hospital</span>
+            <h4 class="category-title">Nursing Care</h4>
+          </div>
+          <div class="category-body">
+            <div class="test-item">
+              <div class="test-info">
+                <div class="test-name">Nursing Care Nepali Test 1</div>
+                <div class="test-details">•45 Questions</div>
+                <div class="test-duration">
+                  <span class="material-icons" style="font-size: 16px;">schedule</span>
+                  45 minutes
+                </div>
+              </div>
+              <a href="tests/nursing-care-nepali-1/index.html" class="btn-success">
+                <span class="material-icons" aria-hidden="true">play_arrow</span>
+                Start
+              </a>
+            </div>
+            <div class="test-item">
+              <div class="test-info">
+                <div class="test-name">Nursing Care Nepali Test 2</div>
+                <div class="test-details">•45 Questions</div>
+                <div class="test-duration">
+                  <span class="material-icons" style="font-size: 16px;">schedule</span>
+                  50 minutes
+                </div>
+              </div>
+              <a href="tests/nursing-care-nepali-2/index.html" class="btn-success">
+                <span class="material-icons" aria-hidden="true">play_arrow</span>
+                Start
+              </a>
+            </div>
+            <div class="test-item">
+              <div class="test-info">
+                <div class="test-name">Nursing Care Japanese Test 1</div>
+                <div class="test-details">•15 Questions</div>
+                <div class="test-duration">
+                  <span class="material-icons" style="font-size: 16px;">schedule</span>
+                  25 minutes
+                </div>
+              </div>
+              <a href="tests/nursing-care-japanese-1/index.html" class="btn-success">
+                <span class="material-icons" aria-hidden="true">play_arrow</span>
+                Start
+              </a>
+            </div>
+            <div class="test-item">
+              <div class="test-info">
+                <div class="test-name">Nursing Care Japanese Test 2</div>
+                <div class="test-details">•15 Questions</div>
+                <div class="test-duration">
+                  <span class="material-icons" style="font-size: 16px;">schedule</span>
+                  25 minutes
+                </div>
+              </div>
+              <a href="tests/nursing-care-japanese-2/index.html" class="btn-success">
+                <span class="material-icons" aria-hidden="true">play_arrow</span>
+                Start
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="category-card category-jft">
+          <div class="category-header">
+            <span class="material-icons category-icon" aria-hidden="true">language</span>
+            <h4 class="category-title">JFT Basic</h4>
+          </div>
+          <div class="category-body">
+            <div class="test-item">
+              <div class="test-info">
+                <div class="test-name">JFT Basic Test 1</div>
+                <div class="test-details">•55 Questions</div>
+                <div class="test-duration">
+                  <span class="material-icons" style="font-size: 16px;">schedule</span>
+                  60 minutes
+                </div>
+              </div>
+              <a href="tests/jft-basic-1/index.html" class="btn-success">
+                <span class="material-icons" aria-hidden="true">play_arrow</span>
+                Start
+              </a>
+            </div>
+            <div class="test-item">
+              <div class="test-info">
+                <div class="test-name">JFT Basic Test 2</div>
+                <div class="test-details">•55 Questions</div>
+                <div class="test-duration">
+                  <span class="material-icons" style="font-size: 16px;">schedule</span>
+                  60 minutes
+                </div>
+              </div>
+              <a href="tests/jft-basic-2/index.html" class="btn-success">
+                <span class="material-icons" aria-hidden="true">play_arrow</span>
+                Start
+              </a>
+            </div>
+            <div class="test-item">
+              <div class="test-info">
+                <div class="test-name">JFT Basic Test 3</div>
+                <div class="test-details">•55 Questions</div>
+                <div class="test-duration">
+                  <span class="material-icons" style="font-size: 16px;">schedule</span>
+                  60 minutes
+                </div>
+              </div>
+              <a href="tests/jft-basic-3/index.html" class="btn-success">
+                <span class="material-icons" aria-hidden="true">play_arrow</span>
+                Start
+              </a>
+            </div>
+            <div class="test-item">
+              <div class="test-info">
+                <div class="test-name">JFT Basic Test 4</div>
+                <div class="test-details">•60 Questions</div>
+                <div class="test-duration">
+                  <span class="material-icons" style="font-size: 16px;">schedule</span>
+                  60 minutes
+                </div>
+              </div>
+              <a href="tests/jft-basic-4/index.html" class="btn-success">
+                <span class="material-icons" aria-hidden="true">play_arrow</span>
+                Start
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p style="margin: 0;">Created by <a href="https://wa.me/9779860172118" target="_blank" rel="noopener">Sajan Maharjan</a> | Skill Point Education Consultancy © 2025</p>
+    <p style="margin: 0.2rem 0 0 0; font-size: 0.9rem;">
+      <span style="color: var(--on-surface);">Download Android App:</span>
+      <a href="https://drive.google.com/file/d/1M46blJ3AzTvJMVkPpd0RC6aBr4RLDput/view?usp=sharing" style="color: var(--primary); font-weight: 600;" target="_blank" rel="noopener">Google Drive</a>
+      <span style="color: var(--on-surface);"> | </span>
+      <a href="https://github.com/mhzsajan/jptestapk/releases/tag/jptestapk" style="color: var(--primary); font-weight: 600;" target="_blank" rel="noopener">GitHub</a>
+    </p>
+  </footer>
+
+  <!-- External JavaScript - FIXED PATH -->
+  <script src="data/js/main.js"></script>
+  
+  <!-- Additional JavaScript for dropdown functionality -->
+  <script>
+    // Dropdown toggle function
+    function toggleDropdown(header) {
+      const content = header.nextElementSibling;
+      const icon = header.querySelector('.dropdown-icon');
+      
+      // Toggle visibility
+      content.classList.toggle('show');
+      
+      // Toggle icon rotation
+      icon.classList.toggle('rotated');
+      
+      // Update aria-expanded for accessibility
+      const isExpanded = content.classList.contains('show');
+      header.setAttribute('aria-expanded', isExpanded);
+    }
+
+    // Keyboard accessibility for dropdowns
+    document.addEventListener('DOMContentLoaded', function() {
+      const dropdownHeaders = document.querySelectorAll('.dropdown-header');
+      
+      dropdownHeaders.forEach(header => {
+        header.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleDropdown(this);
+          }
+        });
+      });
+
+      // Close dropdowns when clicking outside
+      document.addEventListener('click', function(event) {
+        if (!event.target.closest('.dropdown-container')) {
+          document.querySelectorAll('.dropdown-content').forEach(content => {
+            content.classList.remove('show');
+          });
+          document.querySelectorAll('.dropdown-icon').forEach(icon => {
+            icon.classList.remove('rotated');
+          });
+          document.querySelectorAll('.dropdown-header').forEach(header => {
+            header.setAttribute('aria-expanded', 'false');
+          });
+        }
+      });
+    });
+  </script>
+
+  <!-- Control Bar at Bottom -->
+  <div class="control-bar bottom">
+    <div class="control-bar-content">
+      <!-- Time Display -->
+      <div class="bar-time-display">
+        <span id="barTimeBottom">00:00:00</span>
+      </div>
+
+      <!-- Go to Top Button (Home Page Only) -->
+      <button class="bar-btn" id="goToTopBtn" title="Go to top" aria-label="Go to top">
+        <span class="material-icons">arrow_upward</span>
+      </button>
+
+      <!-- Control Buttons - Right -->
+      <div class="bar-controls-right">
+        <!-- Dark Mode Toggle -->
+        <button class="bar-btn" id="barDarkModeBottom" title="Toggle dark mode" aria-label="Toggle dark mode">
+          <span class="material-icons" id="barDarkIconBottom">dark_mode</span>
+        </button>
+        <!-- Sound Toggle -->
+        <button class="bar-btn" id="barSoundBottom" title="Toggle sound" aria-label="Toggle sound">
+          <span class="material-icons" id="barSoundIconBottom">volume_up</span>
+        </button>
+      </div>
+    </div>
+    </div>
+  </div>
+</body>
+</html>

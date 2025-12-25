@@ -1,0 +1,65 @@
+{
+  "name": "jft-mock-test-platform",
+  "version": "1.0.0",
+  "description": "Comprehensive static mock test platform for Japanese language proficiency tests (JFT), nursing care exams, and more. Built with vanilla HTML, CSS, and JavaScript.",
+  "homepage": "https://github.com/mhzsajan/jptestapk",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mhzsajan/jptestapk.git"
+  },
+  "author": {
+    "name": "Sajan Maharjan",
+    "email": "mhzsajan@gmail.com",
+    "url": "https://wa.me/9779860172118"
+  },
+  "license": "MIT",
+  "keywords": [
+    "mock-test",
+    "exam-preparation",
+    "jft",
+    "japanese-language",
+    "nursing-care",
+    "food-service",
+    "education",
+    "testing-platform",
+    "static-site",
+    "html5",
+    "javascript",
+    "responsive-design",
+    "dark-mode",
+    "audio-player"
+  ],
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000 --directory ."
+  },
+  "devDependencies": {},
+  "dependencies": {},
+  "bugs": {
+    "url": "https://github.com/mhzsajan/jptestapk/issues"
+  },
+  "features": [
+    "Fixed control bar with time display",
+    "Dark mode toggle with persistence",
+    "Navigation warnings to prevent data loss",
+    "Audio player with 2-play limit",
+    "Responsive design (desktop, tablet, mobile)",
+    "Android APK distribution",
+    "Multiple test categories",
+    "Progress tracking and timers",
+    "Mobile-friendly interface",
+    "Offline-capable static site"
+  ],
+  "testCategories": [
+    "JFT Basic 1-4",
+    "Nursing Care Japanese 1-2",
+    "Nursing Care Nepali 1-2",
+    "Food Service",
+    "Agriculture",
+    "Building Cleaning",
+    "Ground Handling"
+  ]
+}

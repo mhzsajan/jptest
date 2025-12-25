@@ -1,0 +1,165 @@
+project-root/
+├── index.html
+├── README.md
+├── CONTRIBUTING.md
+├── DEVELOPMENT.md
+├── CHANGELOG.md
+├── TEMPLATE_DOCUMENTATION.md
+├── SESSION_CHANGES_LOG.md
+├── Full Folder Structure.txt
+├── generate_test_files.ps1
+├── update-audio-questions.ps1
+├── android-webview-app/
+│   ├── build.gradle
+│   ├── README.md
+│   ├── settings.gradle
+│   └── app/
+│       ├── build.gradle
+│       └── src/
+│           └── main/
+│               ├── AndroidManifest.xml
+│               ├── java/
+│               │   └── com/
+│               │       └── skillpoint/
+│               │           └── mockweb/
+│               │               └── MainActivity.java
+│               ├── manifest/
+│               └── res/
+│                   └── layout/
+│                       └── activity_main.xml
+├── apk/
+│   └── jptest 1.0.0.apk
+├── project-metadata/
+│   ├── project-metadata.json
+│   ├── AI_README.md
+│   ├── ai_entry
+│   ├── ai_quick.json
+│   └── parse_instructions.txt
+├── scripts/
+│   ├── debug-parse.ps1
+│   └── import-questions.ps1
+├── sources/
+│   └── Questions for Agriculture test.txt
+├── data/
+│   ├── css/
+│   │   ├── main.css
+│   │   └── test.css
+│   ├── js/
+│   │   ├── main.js
+│   │   └── test-manager.js
+│   ├── images/
+│   │   ├── icons/
+│   │   │   ├── (category icons)
+│   │   │   └── ...
+│   │   ├── questions/
+│   │   │   ├── food-service/
+│   │   │   │   ├── (question images)
+│   │   │   │   └── ...
+│   │   │   ├── agriculture/
+│   │   │   │   ├── (question images)
+│   │   │   │   └── ...
+│   │   │   ├── jft basic test 1/
+│   │   │   │   ├── (question images)
+│   │   │   │   └── ...
+│   │   │   ├── jft basic test 2/
+│   │   │   │   ├── (question images)
+│   │   │   │   └── ...
+│   │   │   ├── jft basic test 3/
+│   │   │   │   ├── (question images)
+│   │   │   │   └── ...
+│   │   │   ├── jft basic test 4/
+│   │   │   │   ├── (question images)
+│   │   │   │   └── ...
+│   │   │   └── nursing care japanese test 2/
+│   │   │       ├── (question images)
+│   │   │       └── ...
+│   │   └── ui/
+│   │       ├── (UI related images)
+│   │       └── ...
+│   └── sound/
+│       ├── background/
+│       │   ├── (background audio files)
+│       │   └── ...
+│       ├── ui/
+│       │   ├── (UI sound effects)
+│       │   └── ...
+│       └── questions/
+│           ├── food-service/
+│           │   ├── (question audio files)
+│           │   └── ...
+│           ├── jft basic test 1/
+│           │   ├── (question audio files)
+│           │   └── ...
+│           ├── jft basic test 2/
+│           │   ├── (question audio files)
+│           │   └── ...
+│           ├── jft basic test 3/
+│           │   ├── (question audio files)
+│           │   └── ...
+│           ├── jft basic test 4/
+│           │   ├── (question audio files)
+│           │   └── ...
+│           └── ...
+└── tests/
+    ├── food-service/
+    │   ├── index.html
+    │   └── food-service-data.js
+    ├── agriculture/
+    │   ├── index.html
+    │   └── agriculture-data.js
+    ├── building-cleaning/
+    │   ├── index.html
+    │   └── building-cleaning-data.js
+    ├── ground-handling/
+    │   ├── index.html
+    │   └── ground-handling-data.js
+    ├── nursing-care-japanese-1/
+    │   ├── index.html
+    │   └── nursing-care-japanese-1-data.js
+    ├── nursing-care-japanese-2/
+    │   ├── index.html
+    │   └── nursing-care-japanese-2-data.js
+    ├── nursing-care-nepali-1/
+    │   ├── index.html
+    │   └── nursing-care-nepali-1-data.js
+    ├── nursing-care-nepali-2/
+    │   ├── index.html
+    │   └── nursing-care-nepali-2-data.js
+    ├── jft-basic-1/
+    │   ├── index.html
+    │   └── jft-basic-1-data.js
+    ├── jft-basic-2/
+    │   ├── index.html
+    │   └── jft-basic-2-data.js
+    ├── jft-basic-3/
+    │   ├── index.html
+    │   └── jft-basic-3-data.js
+    └── jft-basic-4/
+        ├── index.html
+        └── jft-basic-4-data.js
+
+## Key Features ##
+
+Control Bar (All Pages):
+- Time display with day name + 24-hour format (updates every 1 second)
+- Dark mode toggle button (persists in localStorage)
+- Sound toggle button (persists in localStorage)
+- Home button on test pages (centered, shows warning modal)
+- Go-to-top button on home page (centered, smooth scroll)
+
+Navigation Warnings:
+- Warning modal for refresh (F5, Ctrl+R, Cmd+R, browser refresh)
+- Warning modal for back button press
+- Warning modal for home button click
+- Warning modal for header/title click (on test pages)
+- Custom modal only (no browser default warnings)
+
+Footer:
+- Compact footer with creator credits
+- "Download Android App" plain text link below credits
+- Smart detection: Play Store on Android, APK download on others
+
+Responsive Design:
+- Mobile breakpoints: 768px, 480px
+- Control bar button sizes scale appropriately
+- All features work on mobile devices

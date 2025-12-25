@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  Test viewer: tests/nursing-care-nepali-1/index.html
+  Loads data from: sibling `*-data.js` in this folder
+  Edit questions: update `tests/nursing-care-nepali-1/*-data.js` or the shared `data/` files
+  Preview: open this file in a browser or run `python -m http.server 8000` and open /tests/nursing-care-nepali-1/index.html
+  Machine note: see /project-metadata/project-metadata.json
+-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nursing Care Nepali Test 1 | Skill Point Education Consultancy</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <!-- External CSS - FIXED PATHS -->
+  <link rel="stylesheet" href="../../data/css/main.css">
+  <link rel="stylesheet" href="../../data/css/test.css">
+  <!-- Compact layout styles moved to ../../data/css/test.css -->
+</head>
+
+<body id="page-top">
+  <!-- Skip to main content link for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Password Protection Modal -->
+  <div id="passwordModal" class="password-modal">
+    <div class="password-modal-content">
+      <button id="passwordModalCloseBtn" class="password-modal-close" aria-label="Close">&times;</button>
+      <div class="password-modal-header">
+        <span class="material-icons password-modal-icon">lock</span>
+        <h2>Password Required</h2>
+        <p>Enter password to access this test</p>
+      </div>
+      <div class="password-modal-body">
+        <input type="password" id="passwordInput" class="password-input" placeholder="Enter password" autofocus>
+        <button id="passwordSubmitBtn" class="password-submit-btn">Unlock</button>
+        <div id="passwordError" class="password-error" style="display: none;">
+          <p style="color: #d32f2f; margin: 10px 0 0 0; font-size: 13px;">Incorrect password. Please try again.</p>
+          <p style="color: var(--on-surface); margin: 8px 0 0 0; font-size: 12px; opacity: 0.8;">To acquire the password, please contact <strong>Skill Point Education Consultancy</strong> or <strong>Sajan Maharjan</strong> via <a href="https://wa.me/9779860172118" target="_blank" rel="noopener" style="color: var(--primary); font-weight: 600; text-decoration: none;">WhatsApp</a>.</p>
+        </div>
+        <a href="../../index.html" class="password-home-link">Go Back To Home</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Brand Header -->
+  <header class="brand-header">
+    <h1 class="brand-title">Skill Point Education Consultancy</h1>
+    <p class="brand-subtitle">Kathmandu, NewPlaza.</p>
+    <p class="section-title">SSW Mock Test Platform</p>
+  </header>
+
+  <!-- Main Test Content -->
+  <main class="main-content" id="main-content">
+    <!-- Loading State -->
+    <div class="loading-container" id="loadingContainer">
+      <div class="loading-spinner">
+        <span class="material-icons">quiz</span>
+      </div>
+      <h2>Loading Nursing Care Nepali Test 1...</h2>
+      <p>Preparing your 10 questions</p>
+    </div>
+
+    <!-- Test Container (hidden initially) -->
+    <div class="test-container" id="testContainer" style="display: none;">
+      <div class="test-header">
+        <div class="test-title-container">
+          <h1 class="test-title" id="dynamicTestTitle">Nursing Care Nepali Test 1</h1>
+          <p class="test-subtitle" id="dynamicTestSubtitle">10 Questions • 16 Minutes</p>
+        </div>
+        
+        <div class="timer-container">
+          <div class="timer-label">Remaining Time</div>
+          <div class="timer-display" id="timerDisplay">16:00</div>
+        </div>
+      </div>
+
+      <div class="question-container">
+        <!-- Question Counter - Styled like navigation buttons -->
+        <div class="question-counter-container">
+          <div class="question-counter" id="questionCounter">Question 1 of 10</div>
+        </div>
+        
+        <div class="question-text" id="questionText"></div>
+        
+        <img id="questionImage" class="question-image" style="display: none;" alt="Question image">
+        
+        <div class="options-container" id="optionsContainer"></div>
+        
+        <div class="navigation-controls">
+          <button class="nav-btn" id="prevBtn" disabled>
+            <span class="material-icons">arrow_back</span>
+            Previous
+          </button>
+          
+          <button class="nav-btn" id="nextBtn">
+            Next
+            <span class="material-icons">arrow_forward</span>
+          </button>
+          
+          <button class="nav-btn skip-all-btn" id="skipAllBtn">
+            <span class="material-icons">fast_forward</span>
+            Skip All & Submit
+          </button>
+          
+          <button class="nav-btn" id="submitBtn" style="display: none;">
+            <span class="material-icons">check_circle</span>
+            Submit Test
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Created by <a href="https://wa.me/9779860172118" target="_blank" rel="noopener">Sajan Maharjan</a> | Skill Point Education Consultancy © 2025</p>
+    <p>Download Android App: <a href="https://drive.google.com/file/d/1M46blJ3AzTvJMVkPpd0RC6aBr4RLDput/view?usp=sharing" target="_blank" rel="noopener">Google Drive</a> | <a href="https://github.com/mhzsajan/jptestapk/releases/tag/jptestapk" target="_blank" rel="noopener">GitHub</a></p>
+  </footer>
+
+  <!-- Image Quick View Modal -->
+  <div id="imageQuickView" class="image-quickview-overlay">
+    <div class="quickview-container">
+      <button class="quickview-close" id="quickviewCloseBtn" aria-label="Close">&times;</button>
+      <div class="quickview-controls">
+        <button class="quickview-control-btn" id="quickviewZoomOutBtn" aria-label="Zoom out" title="Zoom out">
+          <span class="material-icons">zoom_out</span>
+        </button>
+        <span id="quickviewZoomLevel" class="quickview-zoom-level">100%</span>
+        <button class="quickview-control-btn" id="quickviewZoomInBtn" aria-label="Zoom in" title="Zoom in">
+          <span class="material-icons">zoom_in</span>
+        </button>
+        <button class="quickview-control-btn" id="quickviewZoomResetBtn" aria-label="Reset zoom" title="Reset zoom">
+          <span class="material-icons">zoom_out_map</span>
+        </button>
+      </div>
+      <div class="quickview-content">
+        <div class="quickview-image-wrapper">
+          <img id="quickviewImage" class="quickview-image" alt="Image">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- External JavaScript - FIXED PATHS AND ORDER -->
+  <script src="../../data/js/main.js"></script>
+  <!-- Load test data first -->
+  <script src="nursing-care-nepali-1-data.js"></script>
+  <!-- Then load test functionality -->
+  <script src="../../data/js/test-manager.js"></script>
+
+  <!-- Control Bar at Bottom -->
+  <div class="control-bar bottom">
+    <div class="control-bar-content">
+      <div class="bar-time-display">
+        <span id="barTimeBottom">00:00:00</span>
+      </div>
+      <button class="bar-btn bar-home-center" id="barHomeBottom" title="Go to home" aria-label="Go to home page">
+        <span class="material-icons">home</span>
+      </button>
+      <div class="bar-controls-right">
+        <button class="bar-btn" id="barDarkModeBottom" title="Toggle dark mode" aria-label="Toggle dark mode">
+          <span class="material-icons" id="barDarkIconBottom">dark_mode</span>
+        </button>
+        <button class="bar-btn" id="barSoundBottom" title="Toggle sound" aria-label="Toggle sound">
+          <span class="material-icons" id="barSoundIconBottom">volume_up</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+{
+  "name": "jpmocktest.github.io",
+  "description": "Static mock test site containing multiple HTML-based practice tests, test data, images and JS for running question sets locally.",
+  "entry_points": [
+    "tests/*/index.html"
+  ],
+  "important_folders": [
+    "tests/",
+    "data/",
+    "images/",
+    "scripts/"
+  ],
+  "run_instructions": {
+    "quick_open": "Open a file like tests/jft-basic-4/index.html in a browser. Enter password 'test123' to access.",
+    "serve": "python -m http.server 8000 (then open http://localhost:8000/tests/jft-basic-4/index.html)"
+  },
+  "test_command_examples": [
+    "(PowerShell) python -m http.server 8000"
+  ],
+  "author": "mhzsajan",
+  "contact": "(see repo owner)",
+  "notes_for_ai": "This file is a compact machine-readable summary. Read 'README.md' for more context and 'project-metadata/AI_README.md' for the minimal human summary.",
+  "last_updated": "2025-12-25",
+  "current_status": "All 12 tests functional with proper Japanese text encoding and image paths",
+  "tracking": {
+    "enabled": false,
+    "note": "Homepage visitor/test-taken counters removed (CountAPI usage disabled). Per-test increment functions remain but can be disabled if needed."
+  },
+  "data_sources": [
+    {
+      "path": "JFT Basic Test 1.txt",
+      "status": "✅ Recently re-imported",
+      "questions": 55,
+      "notes": "UTF-8 encoded; imported 2025-12-25 to fix corrupted Japanese text. Backup at tests/jft-basic-1/jft-basic-1-data.js.bak"
+    },
+    {
+      "path": "JFT Basic Test 2.txt",
+      "status": "✅ Recently re-imported",
+      "questions": 55,
+      "notes": "UTF-8 encoded; imported 2025-12-25. Backup at tests/jft-basic-2/jft-basic-2-data.js.bak"
+    },
+    {
+      "path": "JFT Basic Test 3.txt",
+      "status": "✅ Recently re-imported",
+      "questions": 55,
+      "notes": "UTF-8 encoded; imported 2025-12-25. Backup at tests/jft-basic-3/jft-basic-3-data.js.bak"
+    },
+    {
+      "path": "JFT Basic Test 4.txt",
+      "status": "✅ Recently re-imported",
+      "questions": 60,
+      "notes": "UTF-8 encoded; imported 2025-12-25. Backup at tests/jft-basic-4/jft-basic-4-data.js.bak"
+    },
+    {
+      "path": "agriculture questions.txt",
+      "status": "Available",
+      "notes": "Plaintext with agriculture questions; parsed via import-questions.ps1"
+    }
+  ],
+  "importer_script": "scripts/import-questions.ps1",
+  "recent_imports": [
+    {
+      "source": "JFT Basic Test 1-4.txt files",
+      "imported_to": "tests/jft-basic-*/jft-basic-*-data.js",
+      "total_questions": 225,
+      "import_date": "2025-12-25",
+      "reason": "Restore proper UTF-8 Japanese text encoding (was showing as ?????)",
+      "notes": "All files regenerated with proper encoding. Image paths updated from ../../data/images/ to ../../images/ and extensions from .jpg to .png"
+    }
+  ],
+  "image_naming_pattern": "images/questions/<test-folder>/Image Q{n}{Letter}.png (example: Image Q1A.png)",
+  "image_paths_note": "Images migrated to root /images/ directory (not /data/images/). Folder names use spaces (e.g., 'jft basic test 1' not 'jft-basic-1')",
+  "ai_instructions": "To quickly understand the project: 1) Read this JSON. 2) Entry points are tests/*/index.html. 3) Test data lives in tests/<test-folder>/*-data.js. 4) Image files follow the pattern above. 5) If you need to ingest questions, use the import-questions.ps1 script with plaintext sources. 6) All JFT Basic tests have been recently regenerated with proper UTF-8 encoding."
+}
