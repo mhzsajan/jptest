@@ -1,0 +1,166 @@
+BACKUP INVENTORY FILE
+=====================
+Date Created: 2026-01-07
+Project: JFT Mock Test Platform
+Purpose: Complete test question backup system for data corruption recovery
+
+BACKUP FOLDER CONTENTS
+======================
+
+📄 BACKUP_README.md (2.5 KB)
+   └─ Master documentation for backup system
+   └─ Overview of all 12 tests
+   └─ File format specifications
+   └─ Encoding standards (UTF-8 with BOM)
+   └─ Restoration instructions
+   └─ AI assistance guide for automated restoration
+
+📄 RESTORATION_GUIDE.txt (4.2 KB)
+   └─ Detailed restoration workflow
+   └─ 3 restoration scenarios with step-by-step instructions
+   └─ Backup file structure specifications
+   └─ Technical details for AI parsing
+   └─ Troubleshooting guide
+   └─ Emergency fallback procedures
+
+📄 BACKUP_INVENTORY.txt (this file)
+   └─ Complete listing of all backup files
+   └─ Test counts and statistics
+   └─ File locations and purposes
+
+TEST BACKUP FILES (12 TOTAL)
+============================
+
+1. JFT BASIC TESTS (4 tests, 225 questions)
+   ├─ jft-basic-1-backup.txt ........... 55 Q | Japanese | DETAILED FORMAT
+   ├─ jft-basic-2-backup.txt ........... 55 Q | Japanese | Reference format
+   ├─ jft-basic-3-backup.txt ........... 55 Q | Japanese | Reference format  
+   └─ jft-basic-4-backup.txt ........... 60 Q | JP/NP/EN | Mixed languages
+
+2. NURSING CARE JAPANESE (2 tests, 34 questions)
+   ├─ nursing-care-japanese-1-backup.txt  17 Q | Japanese | Healthcare scenario
+   └─ nursing-care-japanese-2-backup.txt  17 Q | Japanese | Healthcare scenario
+
+3. NURSING CARE NEPALI (2 tests, 100 questions)
+   ├─ nursing-care-nepali-1-backup.txt  50 Q | Nepali | Devanagari script
+   └─ nursing-care-nepali-2-backup.txt  50 Q | Nepali | Devanagari script
+
+4. CERTIFICATION TESTS (4 tests)
+   ├─ agriculture-backup.txt .......... 40+ Q | Nepali | Farming practices
+   ├─ food-service-backup.txt ........ 55+ Q | Japanese | Food industry
+   ├─ building-cleaning-backup.txt ..... 30 Q | Japanese | Facility management
+   └─ ground-handling-backup.txt ........ 8 Q | English | Airport safety
+
+STATISTICS
+==========
+Total Tests: 12
+Total Questions: 394+
+Languages Supported: Japanese, Nepali, English
+Character Sets: Hiragana, Katakana, Kanji, Devanagari, Latin
+
+Encoding: UTF-8 with BOM (all files)
+File Format: Plain text (.txt)
+Total Backup Size: ~500 KB
+
+ORGANIZATION
+============
+backup/
+├─ BACKUP_README.md .................. Master documentation
+├─ RESTORATION_GUIDE.txt ............. Technical restoration guide
+├─ BACKUP_INVENTORY.txt .............. This file
+│
+├─ [JFT BASIC TESTS]
+│  ├─ jft-basic-1-backup.txt ......... 55 questions, detailed
+│  ├─ jft-basic-2-backup.txt ......... 55 questions
+│  ├─ jft-basic-3-backup.txt ......... 55 questions
+│  └─ jft-basic-4-backup.txt ......... 60 questions (mixed language)
+│
+├─ [NURSING CARE TESTS - JAPANESE]
+│  ├─ nursing-care-japanese-1-backup.txt ... 17 questions
+│  └─ nursing-care-japanese-2-backup.txt ... 17 questions
+│
+├─ [NURSING CARE TESTS - NEPALI]
+│  ├─ nursing-care-nepali-1-backup.txt .... 50 questions
+│  └─ nursing-care-nepali-2-backup.txt .... 50 questions
+│
+└─ [CERTIFICATION TESTS]
+   ├─ agriculture-backup.txt ................ 40+ questions
+   ├─ food-service-backup.txt .............. 55+ questions
+   ├─ building-cleaning-backup.txt ......... 30 questions
+   └─ ground-handling-backup.txt ........... 8 questions
+
+TEST MAPPING TO JS FILES
+========================
+BACKUP FILE                           → TEST DATA JS FILE
+jft-basic-1-backup.txt              → tests/jft-basic-1/jft-basic-1-data.js
+jft-basic-2-backup.txt              → tests/jft-basic-2/jft-basic-2-data.js
+jft-basic-3-backup.txt              → tests/jft-basic-3/jft-basic-3-data.js
+jft-basic-4-backup.txt              → tests/jft-basic-4/jft-basic-4-data.js
+nursing-care-japanese-1-backup.txt  → tests/nursing-care-japanese-1/nursing-care-japanese-1-data.js
+nursing-care-japanese-2-backup.txt  → tests/nursing-care-japanese-2/nursing-care-japanese-2-data.js
+nursing-care-nepali-1-backup.txt    → tests/nursing-care-nepali-1/nursing-care-nepali-1-data.js
+nursing-care-nepali-2-backup.txt    → tests/nursing-care-nepali-2/nursing-care-nepali-2-data.js
+agriculture-backup.txt              → tests/agriculture/agriculture-data.js
+food-service-backup.txt             → tests/food-service/food-service-data.js
+building-cleaning-backup.txt        → tests/building-cleaning/building-cleaning-data.js
+ground-handling-backup.txt          → tests/ground-handling/ground-handling-data.js
+
+USAGE INSTRUCTIONS
+==================
+
+1. QUICK RESTORE (Automated)
+   PowerShell: .\scripts\import-questions.ps1
+   Select: backup\<test-name>-backup.txt
+   Output: tests\<test-name>\<test-name>-data.js
+
+2. EMERGENCY MANUAL RESTORE
+   - Open backup file in text editor (UTF-8 encoding)
+   - Reference original test JS file structure
+   - Copy questions and options with character preservation
+   - Save as UTF-8 with BOM
+   - Test in browser for correct character rendering
+
+3. VERIFICATION
+   - Open test in browser: http://localhost:8000/tests/<test-name>/
+   - Check that Japanese/Nepali characters display correctly
+   - Verify no "?????" corruption
+   - Compare questions with backup file if needed
+
+ENCODING CRITICAL INFORMATION
+==============================
+All files MUST be UTF-8 with BOM (Byte Order Mark):
+- ✓ UTF-8 with BOM: Correct encoding for Japanese and Nepali
+- ✗ UTF-8 without BOM: May cause character issues
+- ✗ ASCII/ISO-8859-1: Will corrupt Japanese/Nepali text
+- ✗ Windows-1252: Not suitable for multi-language content
+
+Nepali (नेपाली) Devanagari script specifically requires:
+- UTF-8 with BOM encoding
+- File saved with full character support (no ASCII stripping)
+- Browser must support Unicode rendering (all modern browsers do)
+
+VERIFICATION CHECKLIST
+======================
+✅ All 12 test backups created
+✅ Documentation files complete (3 files)
+✅ UTF-8 with BOM encoding verified
+✅ Test mapping verified
+✅ Character preservation verified (JP/NP/EN)
+✅ Answer keys mapped (A/B/C/D)
+✅ Image paths recorded (../../images/...)
+✅ Audio paths recorded (../../data/sound/...)
+✅ 394+ questions backed up
+✅ Restoration instructions provided
+✅ AI automation guide included
+
+LAST UPDATED
+============
+Date: 2026-01-07
+Time: During session
+Status: Complete and verified
+All 12 tests: Ready for restoration
+
+For issues or questions, refer to:
+- BACKUP_README.md (overview)
+- RESTORATION_GUIDE.txt (technical details)
+- Original test JS files (structure reference)

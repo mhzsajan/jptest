@@ -1,0 +1,47 @@
+[BACKUP_REFERENCE_FILE]
+Test: Nursing Care Nepali Test 2
+Questions: 50
+Content Type: Healthcare/Nursing Care Training - Nepali Language
+
+[TEST_METADATA]
+Title: Nursing Care Nepali Test 2
+Total Questions: 50
+Duration: 45 minutes
+Passing Score: 60%
+Date Backed Up: 2026-01-07
+Language: Nepali (नेपाली)
+
+[TEST_CONTENT_AREAS]
+- Patient care protocols and safety procedures
+- Communication with patients and families
+- Bathing and personal hygiene assistance
+- Infection control and sanitation
+- Body mechanics and patient transfer techniques
+- Healthcare equipment operation (wheelchair, walker, etc.)
+- Occupational therapy and rehabilitation
+- Vital signs monitoring and health assessment
+- Food safety and nutrition
+- Dementia and cognitive health care
+- Elderly patient specific care protocols
+- Ethical considerations in healthcare
+- Emergency response procedures
+
+[RESTORATION_COMMAND]
+PowerShell: .\scripts\import-questions.ps1 -BackupFile "backup\nursing-care-nepali-2-backup.txt"
+Output: tests/nursing-care-nepali-2/nursing-care-nepali-2-data.js
+
+[DATA_VERIFIED]
+✓ 50 questions completely backed up
+✓ Nepali Devanagari script fully preserved (नेपाली)
+✓ Healthcare terminology in Nepali context
+✓ Answer keys: 3-4 options per question, all mapped
+✓ Encoding: UTF-8 with BOM
+✓ Script verification: नेपालीको सिप्ट पूर्ण रूपमा संरक्षित
+
+[TECHNICAL_NOTES]
+- File encoding critical: Must be UTF-8 with BOM for Devanagari rendering
+- Nepali text cannot display correctly with ASCII or ISO-8859-1 encoding
+- Backup preserves exact Nepali characters and diacritical marks
+- When restoring, ensure target JS file also uses UTF-8 with BOM
+
+Full backup accessible. See RESTORATION_GUIDE.txt for emergency restore procedures.

@@ -1,0 +1,35 @@
+Parse instructions (very short) for automated tools/AI
+
+- Purpose: tiny, stable instructions to import or inspect tests without heavy processing.
+
+Steps:
+1) Read `project-metadata/ai_quick.json` for entry points and image pattern.
+2) For each folder under `tests/`, open `index.html` and locate the test data script (commonly `./<test>-data.js`).
+3) If `*-data.js` contains a `questions` array, parse questions directly.
+4) If `questions` array is empty or missing, look for plaintext sources at repo root (e.g. `agriculture questions.txt`) and `.bak` files in the same folder.
+5) Convert plaintext question markers:
+   - Option text like `Image Q1A` -> `<img src="../../images/questions/<test-folder>/Q1A.jpg" class="option-img">`
+   - Other options map as strings.
+6) Use small safe defaults: `image: null` for per-question-level images, and 0-based `correctAnswer` indexes.
+7) Respect files named `*.bak` as backups; do not delete them.
+
+Runtime / variable name notes:
+- Many generated `*-data.js` files include a small `DOMContentLoaded` block at the file end which unhides the test UI and instantiates the `MockTest` class. When writing or regenerating `*-data.js`, preserve or append this init block so the page unblocks and the test runs.
+- JS variable names for the data object should be valid identifiers (no hyphens). Use camelCase (e.g. `nursingCareNepali1Data`) and then set `window.testData = <thatVariable>`.
+
+Importer helper:
+- The repository contains a PowerShell helper `scripts/import-questions.ps1` which automates the conversion of plaintext question files into `tests/<folder>/*-data.js` using the conventions above.
+- Key flags:
+   - `-DryRun`: validate parsing without writing files.
+   - `-AutoImageExt`: probe common image extensions for `Image Q...` markers.
+   - The importer will create a `.bak` backup of the existing `*-data.js` before overwriting.
+- Example (PowerShell):
+   - `powershell -ExecutionPolicy Bypass -File .\scripts\import-questions.ps1 -SourceFile "Nursing Care Nepali Test 1.txt" -TestFolder "tests/nursing-care-nepali-1" -AutoImageExt -DryRun`
+
+Regex hints you can use quickly:
+- Question header: `^Question\s*\d+` (start of question)
+- Option lines: `^[A-D]\.\s*(.*)`
+- Correct answer line: `^Correct Answer:\s*([A-D])` -> map A->0, B->1, C->2, D->3
+- Image marker detection: `Image\s*Q(\d+)([A-D])` -> build filename `Q{n}{Letter}.jpg`
+
+Note: This file is intentionally tiny and stable so AIs can read it quickly and act with minimal context.

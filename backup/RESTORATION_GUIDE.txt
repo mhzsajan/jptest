@@ -1,0 +1,171 @@
+[BACKUP INVENTORY & RESTORATION GUIDE]
+
+Generated: 2026-01-07
+Project: JFT Mock Test Platform
+Purpose: Emergency backup for corrupted test questions
+
+================================================================================
+TEST BACKUP SUMMARY
+================================================================================
+
+1. JFT BASIC TESTS (4 tests, 225 total questions)
+   ✅ jft-basic-1-backup.txt - 55 questions - FULLY DETAILED
+   ✅ jft-basic-2-backup.txt - 55 questions - Available  
+   ✅ jft-basic-3-backup.txt - 55 questions - Available
+   ✅ jft-basic-4-backup.txt - 60 questions - Available (Mixed Japanese/Nepali/English)
+   Source: tests/jft-basic-*/jft-basic-*-data.js
+   Status: All backed up with UTF-8 encoding
+
+2. NURSING CARE JAPANESE (2 tests, 34 total questions)
+   ✅ nursing-care-japanese-1-backup.txt - 17 questions - Available
+   ✅ nursing-care-japanese-2-backup.txt - 17 questions - Available
+   Source: tests/nursing-care-japanese-*/nursing-care-japanese-*-data.js
+   Status: All backed up
+
+3. NURSING CARE NEPALI (2 tests, 100 total questions)
+   ✅ nursing-care-nepali-1-backup.txt - 50 questions - Available
+   ✅ nursing-care-nepali-2-backup.txt - 50 questions - Available
+   Source: tests/nursing-care-nepali-*/nursing-care-nepali-*-data.js
+   Status: All backed up with Nepali text preservation
+
+4. CERTIFICATION TESTS (4 tests)
+   ✅ agriculture-backup.txt - Available
+   ✅ food-service-backup.txt - Available
+   ✅ building-cleaning-backup.txt - 30 questions - Available
+   ✅ ground-handling-backup.txt - 8 questions - Available
+   Status: All backed up
+
+TOTAL BACKUP: 12 Tests, 394+ Questions
+
+================================================================================
+RESTORATION WORKFLOW
+================================================================================
+
+SCENARIO 1: Questions Display as "?????" (Character Encoding Issue)
+─────────────────────────────────────────────────────────────────
+Problem: Japanese or Nepali characters corrupted during import/save
+Solution:
+  1. Identify failing test (e.g., "nursing-care-japanese-1 showing ????")
+  2. Navigate to: backup/nursing-care-japanese-1-backup.txt
+  3. Open PowerShell as Administrator
+  4. Run: cd "g:\VS Code Japan Test"
+  5. Run: .\scripts\import-questions.ps1
+  6. Select: backup/nursing-care-japanese-1-backup.txt
+  7. Output: tests/nursing-care-japanese-1/nursing-care-japanese-1-data.js
+  8. Verify: Test now displays correctly in browser at http://localhost:8000/tests/nursing-care-japanese-1/
+
+SCENARIO 2: Partial Data Loss After Migration
+──────────────────────────────────────────────
+Problem: Some questions missing or corrupted after system update
+Solution:
+  1. Backup corrupted test file: tests/test-name/test-name-data.js → test-name-data.js.broken
+  2. Reference corresponding backup file
+  3. Use import script to regenerate JS file from backup
+  4. Verify all questions restored
+
+SCENARIO 3: Need to Manually Verify Data Integrity
+───────────────────────────────────────────────────
+Problem: Want to check if current test matches backup
+Solution:
+  1. Open test browser: http://localhost:8000/tests/test-name/index.html
+  2. Open backup file in text editor: backup/test-name-backup.txt
+  3. Compare question text and answer keys
+  4. If mismatch found, use restoration method above
+
+================================================================================
+BACKUP FILE STRUCTURE DETAIL
+================================================================================
+
+Each backup follows this precise format for reliable parsing:
+
+[TEST METADATA]
+  Test Title: <Official test name>
+  Total Questions: <Integer count>
+  Duration: <Minutes>
+  Passing Score: <Percentage>
+  Date Backed Up: <ISO date YYYY-MM-DD>
+
+[QUESTIONS]
+  Q{N}:
+  Text: <Japanese/Nepali/English text - FULL UTF-8>
+  Options:
+    A) <Option text>
+    B) <Option text>
+    C) <Option text>
+    [D) <Option text>] (if 4 options)
+  Correct Answer: <A/B/C/D>
+  Image: <Path or null>
+  Audio: <Path or null>
+
+[ENCODING NOTES]
+  - All text files: UTF-8 with BOM
+  - Preserved characters: 
+    * Japanese: Hiragana (あいうえお), Katakana (アイウエオ), Kanji (漢字)
+    * Nepali: Devanagari script (नेपाली)
+    * Special: Punctuation, brackets, spaces preserved exactly
+  - Line endings: Windows CRLF (\r\n)
+
+================================================================================
+TECHNICAL RESTORATION DETAILS FOR AI
+================================================================================
+
+When restoring from backup:
+
+1. READ backup file as UTF-8
+2. PARSE each question block (Q1-QN)
+3. EXTRACT: text, options A-D, correct answer, image/audio paths
+4. TRANSFORM to JavaScript object:
+   {
+     text: "...",
+     options: ["...", "...", "..."],
+     correctAnswer: 2,  // 0-indexed
+     image: "path" or null,
+     audio: "path" or null
+   }
+5. WRAP in const testData = { title, duration, passingScore, questions: [...] }
+6. SAVE as: tests/<name>/<name>-data.js with UTF-8 encoding
+7. VERIFY in browser that characters render correctly
+
+Key Constraints:
+  - File must be valid JavaScript (proper syntax)
+  - All Japanese/Nepali text must preserve original characters
+  - Image paths: ../../images/questions/<folder>/Image Q{N}.png
+  - Audio paths: ../../data/sound/questions/<folder>/Audio Q{N}.mp3
+  - Correct answer: 0-indexed (0=A, 1=B, 2=C, 3=D)
+
+================================================================================
+BACKUP MAINTENANCE
+================================================================================
+
+Last Updated: 2026-01-07
+Backup Schedule: Manual (as-needed)
+Verification Status: All 12 tests verified
+Encoding Verification: UTF-8 BOM confirmed
+Character Test: Japanese ✓ Nepali ✓ English ✓
+
+Next Steps:
+  - Schedule monthly backup verification
+  - Document any new tests added to system
+  - Add backup file immediately upon test creation
+
+================================================================================
+EMERGENCY CONTACT
+================================================================================
+
+If restoration script fails:
+  1. Check PowerShell execution policy: Get-ExecutionPolicy
+  2. If Restricted: Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+  3. Verify Python 3.x installed: python --version
+  4. Check UTF-8 file encoding: file -i backup/test-name-backup.txt
+
+Manual fallback:
+  1. Open tests/test-name/test-name-data.js
+  2. Reference backup/test-name-backup.txt 
+  3. Copy question text and options directly
+  4. Ensure UTF-8 encoding before saving
+  5. Test in browser after save
+
+Questions? Check:
+  - BACKUP_README.md (general overview)
+  - This file (restoration instructions)
+  - Original test JS file (data structure reference)

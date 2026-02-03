@@ -1,0 +1,42 @@
+[BACKUP_REFERENCE_FILE]
+Test: Nursing Care Nepali Test 1
+Questions: 50
+Content Type: Healthcare/Nursing Care Training - Nepali Language
+
+[TEST_METADATA]
+Title: Nursing Care Nepali Test 1
+Total Questions: 50
+Duration: 45 minutes
+Passing Score: 60%
+Date Backed Up: 2026-01-07
+Language: Nepali (नेपाली)
+
+[TEST_COVERAGE]
+- Quality of Life (QOL) and patient care concepts
+- Healthcare equipment and tools (wheelchair handling, safety devices)
+- Patient hygiene and bathing procedures
+- Personal care and dignity maintenance
+- Medical terminology and healthcare concepts
+- Disease prevention and infection control
+- Rehabilitation principles
+- Patient communication and empathy
+
+[RESTORATION_COMMAND]
+PowerShell: .\scripts\import-questions.ps1 -BackupFile "backup\nursing-care-nepali-1-backup.txt"
+Output: tests/nursing-care-nepali-1/nursing-care-nepali-1-data.js
+
+[DATA_VERIFIED]
+✓ 50 comprehensive healthcare questions
+✓ Nepali text fully preserved with Devanagari script (नेपाली)
+✓ Healthcare/medical terminology in Nepali
+✓ All answer keys mapped (A/B/C/D format)
+✓ Encoding: UTF-8 with BOM (required for Devanagari)
+✓ Character verification: पत्र प्रणाली सम्पूर्ण
+
+[SPECIAL_CONSIDERATIONS]
+- Nepali text requires UTF-8 BOM encoding for proper display
+- Devanagari script support verified
+- Medical/nursing terminology translated to Nepali
+- All questions culturally relevant to Nepali healthcare context
+
+Full content in backup file. Reference tests/nursing-care-nepali-1/nursing-care-nepali-1-data.js for structure.

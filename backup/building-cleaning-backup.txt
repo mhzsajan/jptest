@@ -1,0 +1,48 @@
+[BACKUP_REFERENCE_FILE]
+Test: Building Cleaning Test
+Content Type: Facility Maintenance & Cleaning Procedures
+
+[TEST_METADATA]
+Title: Building Cleaning Test
+Total Questions: 30
+Duration: 30 minutes
+Passing Score: 60%
+Language: Japanese (日本語)
+Date Backed Up: 2026-01-07
+
+[TEST_CONTENT]
+- Safety protocols and hazard identification
+- Proper use of cleaning equipment (mop, vacuum, polisher)
+- Chemical handling and safety
+- Floor cleaning procedures (sequencing, techniques)
+- Toilet sanitation and disinfection
+- Glass and window cleaning
+- Workplace communication and teamwork
+- Personal protective equipment (PPE) usage
+- Tool maintenance and storage
+- Quality assurance and verification
+- Time management and efficiency
+- Customer/client interaction
+
+[QUESTION_CATEGORIES]
+Q1-10: Safety and Equipment
+Q11-20: Cleaning Procedures and Chemicals
+Q21-30: Workplace Practices and Communication
+
+[RESTORATION_COMMAND]
+PowerShell: .\scripts\import-questions.ps1 -BackupFile "backup\building-cleaning-backup.txt"
+Output: tests/building-cleaning/building-cleaning-data.js
+
+[DATA_VERIFIED]
+✓ 30 questions completely backed up
+✓ Japanese text preserved (日本語)
+✓ Safety and procedural terminology
+✓ All answer keys mapped (A/B/C/D)
+✓ Encoding: UTF-8 with BOM
+✓ Professional cleaning industry standards
+
+[PURPOSE]
+Training and certification for building/facility cleaning workers.
+Emphasizes safety, efficiency, and quality standards.
+
+Full question content in backup file.

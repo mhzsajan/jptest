@@ -1,0 +1,576 @@
+[TEST METADATA]
+Test Title: JFT Basic Test 1
+Total Questions: 55
+Duration: 50 minutes
+Passing Score: 70%
+Date Backed Up: 2026-01-07
+
+[QUESTIONS]
+
+Q1:
+Text: 下の絵を見て正しいものはどれですか、1から3の中から選んでください。
+Options:
+  A) 笑っています
+  B) 友達と話しています
+  C) 泣いています
+Correct Answer: C
+Image: ../../images/questions/jft basic test 1/Image Q1.png
+Audio: null
+
+Q2:
+Text: 下のイラストを見て何をしていますか1から3の中から選んでください。
+Options:
+  A) うれしい顔
+  B) おこっている顔
+  C) 泣いている顔
+Correct Answer: A
+Image: ../../images/questions/jft basic test 1/Image Q2.png
+Audio: null
+
+Q3:
+Text: 下の人は今何をしていますか。1から3の中から選んでください。
+Options:
+  A) ねことけんかしています
+  B) 動物と買い物しています
+  C) 犬とさんぽしています
+Correct Answer: C
+Image: ../../images/questions/jft basic test 1/Image Q3.png
+Audio: null
+
+Q4:
+Text: 下のイラストを見て何をしていますか1から3の中から選んでください。
+Options:
+  A) 歩いています。
+  B) 話しています。
+  C) 走っています。
+Correct Answer: C
+Image: ../../images/questions/jft basic test 1/Image Q4.png
+Audio: null
+
+Q5:
+Text: 少しずつ漢字が（　 ​ ​  ​ ​ ​ 　）きました。
+Options:
+  A) かいて
+  B) おぼえて
+  C) よんで
+Correct Answer: B
+Image: null
+Audio: null
+
+Q6:
+Text: 最近、（ ​ ​  ​ ​ ​ ​ ​ ​​ ​ ​ ）寒くなってきました。
+Options:
+  A) だんだん
+  B) どんどん
+  C) そろそろ
+Correct Answer: A
+Image: null
+Audio: null
+
+Q7:
+Text: できるだけお酒を（ ​ ​  ​ ​ ​ ​ ​ ​ ​ ）ようにしています。
+Options:
+  A) たべる
+  B) のまない
+  C) かむ
+Correct Answer: B
+Image: null
+Audio: null
+
+Q8:
+Text: 私はお金がないから父に（ ​ ​ ​ ​ ​ ​ ​ ​ ​  ​ ）います。
+Options:
+  A) おくってもらって
+  B) おくってあげて
+  C) おくってやります
+Correct Answer: A
+Image: null
+Audio: null
+
+Q9:
+Text: 本当に寒いからかぜをひかない（ ​   ​ ​ 　））して ください。
+Options:
+  A) ように
+  B) ほどに
+  C) なるに
+Correct Answer: A
+Image: null
+Audio: null
+
+Q10:
+Text: かりたほんですから明日までに（ ​  ​​ ​ ​ ​ ​ ​ ​ ​ ））なりません。
+Options:
+  A) かわなければ
+  B) かえさなければ
+  C) いかなければ
+Correct Answer: B
+Image: null
+Audio: null
+
+Q11:
+Text: 最近はネパール人も日本に（　 ​ ​ ​  ​ ））きています。
+Options:
+  A) ふえて
+  B) すわって
+  C) たって
+Correct Answer: A
+Image: null
+Audio: null
+
+Q12:
+Text: 明日は子供のたんじょうびです。それは（ ​   ​ ​ ​ ​ ））ですね。
+Options:
+  A) ありがたい
+  B) おめでたい
+  C) かんけいない
+Correct Answer: B
+Image: null
+Audio: null
+
+Q13:
+Text: いまからポカラへ行きますから（　 ​ ​ ​ ））きます。
+Options:
+  A) かえって
+  B) いって
+  C) はいって
+Correct Answer: B
+Image: null
+Audio: null
+
+Q14:
+Text: 2月に試験があるから（  ​ ​ ​ ​ ））予定です。
+Options:
+  A) かける
+  B) うける
+  C) いける
+Correct Answer: B
+Image: null
+Audio: null
+
+Q15:
+Text: 私の友達は田舎に（　​ 　））いますから会いに行きます。
+Options:
+  A) すわって
+  B) すんで
+  C) のんで
+Correct Answer: B
+Image: null
+Audio: null
+
+Q16:
+Text: 来年の夏に日本へ行く（ ​ ​​  ​ ））です。
+Options:
+  A) むろり
+  B) くもり
+  C) つもり
+Correct Answer: C
+Image: null
+Audio: null
+
+Q17:
+Text: 私は６カ月前からこの学校に（ ​ ​ ​ ​  ​ ））います。
+Options:
+  A) すんで
+  B) かよって
+  C) あそんで
+Correct Answer: B
+Image: null
+Audio: null
+
+Q18:
+Text: どうして日本語を勉強していますか。そうですね、日本に（　 ​ ​ ​ ​ ​ ​ 　））からです。
+Options:
+  A) いきたい
+  B) ひきたい
+  C) ききたい
+Correct Answer: A
+Image: null
+Audio: null
+
+Q19:
+Text: 今日のごはんはおいしかったですね。（　 ​ ​ 　））でした。
+Options:
+  A) ごちそうさま
+  B) おつかれさま
+  C) おせわさま
+Correct Answer: A
+Image: null
+Audio: null
+
+Q20:
+Text: 大学の前に私の学校があります
+Options:
+  A) だいがく
+  B) だいげく
+  C) たいがく
+Correct Answer: A
+Image: null
+Audio: null
+
+Q21:
+Text: 私は4月に入学したと思います。
+Options:
+  A) きゅうがく
+  B) みゅうがく
+  C) にゅうがく
+Correct Answer: C
+Image: null
+Audio: null
+
+Q22:
+Text: 今日の会議はたいへんでした。
+Options:
+  A) こうぎ
+  B) がいぎ
+  C) かいぎ
+Correct Answer: C
+Image: null
+Audio: null
+
+Q23:
+Text: 私は毎日バスに乗っています
+Options:
+  A) のって
+  B) そって
+  C) こって
+Correct Answer: A
+Image: null
+Audio: null
+
+Q24:
+Text: 雨がふる前にかみなりが光っています
+Options:
+  A) ぴかって
+  B) ひかって
+  C) みがって
+Correct Answer: B
+Image: null
+Audio: null
+
+Q25:
+Text: ここはトヨタの工場です。
+Options:
+  A) こうじょう
+  B) ごうじょう
+  C) ろうじょう
+Correct Answer: A
+Image: null
+Audio: null
+
+Q26:
+Text: 私のがくぶは医学です。
+Options:
+  A) きがく
+  B) いがく
+  C) りがく
+Correct Answer: B
+Image: null
+Audio: null
+
+Q27:
+Text: 自分の意見を言ってください。
+Options:
+  A) けいけん
+  B) そうだん
+  C) いけん
+Correct Answer: C
+Image: null
+Audio: null
+
+Q28:
+Text: 店の前に大きな通りがあります。
+Options:
+  A) おどり
+  B) とおり
+  C) かおり
+Correct Answer: B
+Image: null
+Audio: null
+
+Q29:
+Text: 間に合わないばあいはかならず連絡してください。
+Options:
+  A) れんらく
+  B) るんらく
+  C) らんらく
+Correct Answer: A
+Image: null
+Audio: null
+
+Q30:
+Text: ここはしらないの人の駐車場です
+Options:
+  A) ちゅうりんじょう
+  B) ちゅうしゃじょう
+  C) ちゅういんじょう
+Correct Answer: B
+Image: null
+Audio: null
+
+Q31:
+Text: しけんの途中ですからかしずかにしましょう
+Options:
+  A) とちゅう
+  B) てちゅう
+  C) てちょう
+Correct Answer: A
+Image: null
+Audio: null
+
+Q32:
+Text: 私は水泳がすきです
+Options:
+  A) すいすい
+  B) すいよう
+  C) すいえい
+Correct Answer: C
+Image: null
+Audio: null
+
+Q33:
+Text: こみますからはやく予約したほうがいいですよ。
+Options:
+  A) ようやく
+  B) よやけ
+  C) よやく
+Correct Answer: C
+Image: null
+Audio: null
+
+Q34:
+Text: ひとりでだいじょうぶですからしないでください。
+Options:
+  A) しんはい
+  B) しんばい
+  C) しんぱい
+Correct Answer: C
+Image: null
+Audio: null
+
+Q35:
+Text: シタ：先生、ちょっと時間がありますか。聞きたいことがあります。 先生：どうぞなんですか。 シタ：あした用事がありますから学校を..................と思っているんですが、だいじょうぶでしょうか？ 先生：そうなんですか？できるだけ休まないほうがいいと思いますが、
+Options:
+  A) やすもう
+  B) やすむ
+  C) やすみ
+  D) やすまない
+Correct Answer: A
+Image: null
+Audio: null
+
+Q36:
+Text: モリ：もしもしムナさんお元気ですか？ ムナ：あぁモリさんおひさしぶりです。私は元気ですが、モリさんは： モリ：おかげさまで私もげんきです。じつは私も先週東京に来ています。今週の土曜日は時間があったらムナさんのうちへ............つもりですが、いかがでしょうか。 ムナ：ぜひ来てください。お待ちしております
+Options:
+  A) いける
+  B) いく
+  C) いきたい
+  D) いこう
+Correct Answer: B
+Image: null
+Audio: null
+
+Q37:
+Text: 私にあいするカトマンズのお父さんとお母さん、 お元気ですか。私は元気ですが、もういなかへ帰ってきたのは1年になりました。カトマンズにいたときに本当にやさしくしてくれてありがとうございました。カトマンズの写真を見るといつもお父さんとお母さんのことをおもいだしてなみだがでます。いつか私が住んでいるところにも...........ほしいです。
+Options:
+  A) くる
+  B) こない
+  C) きて
+  D) きた
+Correct Answer: C
+Image: null
+Audio: null
+
+Q38:
+Text: モリ：昨日はサッカーの試合があったのを知っていますか。 キムラ：いいえ、知りませんでした。どのチームがかちましたか？ モリ：ざんねんながらネパールはかちませんでした。インドがかちました。 キムラ：そうですか？こんどはぜひネパールがかってほしいですね。 モリ：最近ネパールもつよいですから次はもちろん..........としんじています。 キムラ：そうですね。おうえんしましょう。
+Options:
+  A) かつ
+  B) かち
+  C) がつ
+  D) げつ
+Correct Answer: A
+Image: null
+Audio: null
+
+Q39:
+Text: アシカ：友達は先月にけっこんしました。 ニル：そうですか。けっこんのパーティーはしていないですよね。 アシカ：そうですよ。私もパーティーしていないと思っていましたが、聞いたらしばらくパーティーをしない予定だそうです。 ニル：けっこんのおいわいを..........思いますが、何が一番いいですか。 アシカ：今は現金のほうがいいと思います。
+Options:
+  A) あげたいと
+  B) もらいたいと
+  C) いただきたいと
+  D) くれたいと
+Correct Answer: A
+Image: null
+Audio: null
+
+Q40:
+Text: ラム：どうしてさいきんはあまり学校にこないんですか？ ケサブ：体の調子がよくないですから。 ラム：病院へ行きましたか？医者にみてもらったほうがいいですよ。 ケサブ：そうですよね。なかなか仕事がいそがしくていけないんです。 けんこうが一番ですからあまりむりを..............　ほうがいいです。
+Options:
+  A) して
+  B) する
+  C) しない
+  D) した
+Correct Answer: C
+Image: null
+Audio: null
+
+Q41:
+Text: 私はきょねん東京の日本語学校に来ました。東京の生活は少しなれて来ました。東京に来たころは　とても大変でした。なれない生活と知らない町でしたので　よく家族のことをおもいだして泣きました。初めのころは友達もいなかったので心配のことやそうだんしたいことはたくさんありました。でも今は一人での生活にだんだん　............. 来ました。国にいる両親も安心しています。
+Options:
+  A) なれり
+  B) なれろ
+  C) なれて
+  D) なれないで
+Correct Answer: C
+Image: null
+Audio: null
+
+Q42:
+Text: 私は東京に来たころ　びっくりしたのは　人が多かったことでした。東京の町には人がおおぜいいますが、みんなあるくのが早くてとても ​ .............. そうです。朝の電車は人がたくさん乗っていて、皆眠そうな顔をしています。私のいなかは人が少なくて、とてもしずかな　ところですから、少し　こわかったです。でも　最近　もんだい　です。
+Options:
+  A) いそがしい
+  B) いそがし
+  C) いそがしくない
+  D) いそがしかった
+Correct Answer: A
+Image: null
+Audio: null
+
+Q43:
+Text: 昨日はバレーボールの　れんしゅう　ありました。いつも仕事ばかりで　うんどうにならないので、とても　いい　うんどうに　なりました。今日は　バレーボールの先生にじょうずに　なりましたねと言われました。バレーボールは.............　おもしろいです
+Options:
+  A) れんしゅうすればするほど
+  B) れんしゅう　しないと
+  C) れんしゅう　するなら
+  D) れんしゅう　しなければ　しないほど
+Correct Answer: A
+Image: null
+Audio: null
+
+Q44:
+Text: 私は　いい　友達もできました。いつも一緒にれんしゅう　している　タナカさんです。タナカさんはとても　まじめな人です。今度は一緒にしあいに出るやくそくをしています。私もタナカさんもしあいに ​ ................　はじめてなので　もっと　がんばるひつようがあります。
+Options:
+  A) でるのは
+  B) でたのは
+  C) でないのは
+  D) でなかったのは
+Correct Answer: A
+Image: null
+Audio: null
+
+Q45:
+Text: 来週からは週に4回　れんしゅうに行くことにしています。たくさん　れんしゅう　する事によって　じょうずに　なってくると　思います。友達は仕事で　いつも　いそがしいと言っていますが、でもかつために　がんばるしか　ないです。毎日電話で話をして　れんしゅうの　ほうほうを考えています。2人は休まないで　れんしゅうをしていますので　きっとかつと思います。これからも試合に　..............がんばって　れんしゅうしようと思います。
+Options:
+  A) かつように
+  B) かてるために
+  C) かてるように
+  D) かったため
+Correct Answer: C
+Image: null
+Audio: null
+
+Q46:
+Text: みなさん、おしらせがあります。来週の土曜日はピクニックへ行く予定をしています。みなさん、ぜひ　さんか　して　ください。ぜんいんに声をかけていますが、休んだ人もいますから　自分の友達にはれんらく　して　ください。こんかいは　ナガルコットへ行く予定です。土曜日はあさ7時までに学校の前にあつまって　ください。7時に　でますから　みんなさん、おくれない　...............　してください。よろしく　おねがい　します。
+Options:
+  A) ように
+  B) するに
+  C) しないに
+  D) したように
+Correct Answer: A
+Image: null
+Audio: null
+
+Q47:
+Text: 日本語を勉強している学生にしけんについて　お話しをします。こんかいの試験ももうすぐです。しっかり　勉強していると思いますが、N4のしけんは　N5より　かなり　むずかしいと　思います。先生も合格できるように教えていますが、自分たちもできるだけ　がんばって勉強してください。わからない　ことが　あったら　先生に聞いて下さい。先生に聞きたいときにはこの電話ばんごうに電話　.............　下さい。
+Options:
+  A) しないで
+  B) して
+  C) する
+  D) しない
+Correct Answer: B
+Image: null
+Audio: null
+
+Q48:
+Text: 日本とネパールのきせつについて話をしたいと思います。日本はよっつの　きせつがありますが、ネパールはむっつ　あります。日本は夏、冬、秋と春です。どうしてネパールは　むっつある　でしょうか？私もよく　わからない　ですが、こどものころから　そのように勉強して　きました。私はネパールのきせつの　中で春がいちばん好きです。はるは　さむくもないし、暑くもないですから。花もさくきせつ　ですからだれでも..........　だと思います。
+Options:
+  A) きらい
+  B) すきじゃない
+  C) すき
+  D) いやな
+Correct Answer: C
+Image: null
+Audio: null
+
+Q49:
+Text: 日本とネパールの文化ついて話をしたいと思います。日本はご飯を食べる前に　いただきますと言いますが、ネパールではあまり言わないと思います。最近、ネパールも文化が変わってきて外国の文化になっています。本当は文化が大事に　..................ほうがいいと思います。
+Options:
+  A) しない
+  B) した
+  C) しよう
+  D) して
+Correct Answer: B
+Image: null
+Audio: null
+
+Q50:
+Text: シンさんのお姉さんはどの人ですか・
+Options:
+  A) スーツをきてカバンを持っている人です。
+  B) サリをきてかみの長い人です。
+  C) スカートをはいてかみの長い人です。
+Correct Answer: B
+Image: null
+Audio: ../../data/sound/questions/jft basic test 1/Audio Q50.mp3
+
+Q51:
+Text: シンさんのお姉さんはどんな人ですか。
+Options:
+  A) やさしい人です。
+  B) きびしい人です。
+  C) しんせつなひとです。
+Correct Answer: B
+Image: null
+Audio: ../../data/sound/questions/jft basic test 1/Audio Q51.mp3
+
+Q52:
+Text: よしださんのむすこはどんな人ですか。
+Options:
+  A) スポーツがすきで元気な人です
+  B) まじめで　あたまがわるい人です。
+  C) やさしくて　あたまが　いい　人です。
+Correct Answer: A
+Image: null
+Audio: ../../data/sound/questions/jft basic test 1/Audio Q52.mp3
+
+Q53:
+Text: ホセさんは何を食べますか。
+Options:
+  A) さかなのなべ料理
+  B) 肉のなべ料理
+  C) カニのなべ料理
+Correct Answer: C
+Image: null
+Audio: ../../data/sound/questions/jft basic test 1/Audio Q53.mp3
+
+Q54:
+Text: 話を聞いて下の１～3の中でどれが　ただしいですか。
+Options:
+  A) Image Q54A
+  B) Image Q54B
+  C) Image Q54C
+Correct Answer: A
+Image: null
+Audio: ../../data/sound/questions/jft basic test 1/Audio Q54.mp3
+
+Q55:
+Text: 話を聞いてそれが正しですか。一つ選んでください。
+Options:
+  A) Image Q55A
+  B) Image Q55B
+  C) Image Q55C
+Correct Answer: A
+Image: null
+Audio: ../../data/sound/questions/jft basic test 1/Audio Q55.mp3
+
+---
+END OF BACKUP FILE

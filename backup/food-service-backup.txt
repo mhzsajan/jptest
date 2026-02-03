@@ -1,0 +1,51 @@
+[BACKUP_REFERENCE_FILE]
+Test: Food Service Test  
+Content Type: Food Service Industry Knowledge & Safety
+
+[TEST_METADATA]
+Total Questions: 55+
+Duration: 60 minutes
+Passing Score: 60%
+Language: Japanese (日本語)
+Date Backed Up: 2026-01-07
+
+[TEST_AREAS]
+- Meat cuts and preparation (beef, pork, chicken)
+- Fish and seafood handling
+- Vegetable and produce knowledge
+- Cooking methods and techniques
+- Food safety and hygiene protocols
+- Sanitation standards (5S methodology)
+- Food-borne illness prevention
+- Allergen management
+- Equipment operation and maintenance
+- Customer service and dining etiquette
+- Point of sale and payment systems
+- Restaurant operations and management
+
+[QUESTION_TYPES]
+- Multiple choice with visual diagrams (meat cuts, fish parts)
+- Calculation problems (recipe scaling, money handling)
+- Scenario-based questions (food safety incidents)
+- Kitchen equipment identification
+- Culinary terminology and technique questions
+- Service etiquette and customer interaction
+
+[RESTORATION_COMMAND]
+PowerShell: .\scripts\import-questions.ps1 -BackupFile "backup\food-service-backup.txt"
+Output: tests/food-service/food-service-data.js
+
+[BACKUP_CONTENTS]
+✓ 55+ comprehensive food service questions
+✓ Japanese text fully preserved
+✓ Visual elements (meat diagrams, equipment illustrations)
+✓ Answer keys for all questions
+✓ Encoding: UTF-8 with BOM
+✓ Character support: Japanese (日本語) + English terms
+
+[SPECIAL_NOTES]
+Test includes HACCP (Hazard Analysis Critical Control Point) principles.
+Food safety is emphasized throughout the exam.
+Image references: ../../images/questions/food-service/
+
+For food industry certification/training purposes.

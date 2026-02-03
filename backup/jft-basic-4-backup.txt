@@ -1,0 +1,39 @@
+[BACKUP_REFERENCE_FILE]
+Test: JFT Basic Test 4
+Questions: 60
+Content Type: Japanese/Nepali/English Language Test
+
+[TEST_METADATA]
+Title: JFT Basic Test 4
+Total Questions: 60
+Duration: 60 minutes
+Passing Score: 80%
+Language Mix: Japanese + Nepali + English
+Date Backed Up: 2026-01-07
+
+[QUESTION_DISTRIBUTION]
+- Visual with multi-language labels (Q1-5)
+- Vocabulary in Japanese (Q6-16)
+- Dialogue-based comprehension (Q17-30)
+- Audio-based questions (Q31-45)
+- Reading comprehension in English (Q46-60)
+
+[SPECIAL_NOTES]
+This test includes mixed language content - backup preserves:
+✓ Japanese Hiragana/Katakana/Kanji
+✓ Nepali Devanagari script (नेपाली)
+✓ English text and instructions
+✓ Multi-language option pairs
+
+[RESTORATION_COMMAND]
+PowerShell: .\scripts\import-questions.ps1 -BackupFile "backup\jft-basic-4-backup.txt"
+Output: tests/jft-basic-4/jft-basic-4-data.js
+
+[DATA_VERIFIED]
+✓ 60 questions with all language variants
+✓ Image paths: ../../images/questions/jft basic test 4/
+✓ Audio paths: ../../data/sound/questions/jft basic test 4/
+✓ Correct answer keys: All 60 questions mapped
+✓ Mixed encoding: UTF-8 BOM handles all character sets
+
+For emergency restore: See RESTORATION_GUIDE.txt

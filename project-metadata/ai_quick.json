@@ -1,0 +1,31 @@
+{
+  "name": "jpmocktest.github.io",
+  "short_description": "Static HTML mock-test site. Tests under `tests/`, per-test data in `*-data.js`.",
+  "entry_points": ["tests/*/index.html"],
+  "primary_data_paths": ["tests/*/*-data.js"],
+  "plaintext_sources": [
+    "JFT Basic Test 1.txt",
+    "JFT Basic Test 2.txt",
+    "JFT Basic Test 3.txt",
+    "JFT Basic Test 4.txt",
+    "agriculture questions.txt",
+    "Nursing Care Nepali Test 1.txt"
+  ],
+  "image_pattern": "images/questions/<test-folder>/Image Q{n}{Letter}.png",
+  "backups": "tests/*/*.bak",
+  "tracking": {
+    "homepage_counters": false,
+    "per_test_increments": true
+  },
+  "preview_command": "python -m http.server 8000",
+  "minimal_parse_steps": [
+    "1. Read this JSON for entry points and image pattern.",
+    "2. For each test folder, load its index.html and the sibling *-data.js.",
+    "3. If *-data.js is empty, check plaintext sources at repo root and .bak files.",
+    "4. Map plaintext markers like 'Image Q1A' -> image file using image_pattern.",
+    "5. Note: Image paths use spaces in folder names (e.g., 'jft basic test 1' not 'jft-basic-1')",
+    "6. Respect backups; do not overwrite without saving a .bak first."
+  ],
+  "last_updated": "2025-12-25",
+  "notes": "Importer script at scripts/import-questions.ps1; when importing, tool will create a backup (*.bak). Data file variable names are converted to camelCase and assigned to window.testData. All *-data.js files include initialization code at the end to set window.testData and enable test access after password entry. Images migrated to root /images/ directory (not /data/images/). All JFT Basic test files regenerated with proper UTF-8 encoding from source text files."
+}

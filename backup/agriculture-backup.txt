@@ -1,0 +1,47 @@
+[BACKUP_REFERENCE_FILE]
+Test: Agriculture Test
+Content Type: Agricultural Practices & Farming Knowledge
+
+[TEST_METADATA]
+Total Questions: 40+ (varies)
+Duration: 50 minutes
+Passing Score: 60%
+Language: Nepali (नेपाली)
+Date Backed Up: 2026-01-07
+
+[SUBJECT_MATTER]
+- Crop cultivation techniques
+- Soil preparation and management
+- Irrigation methods and water conservation
+- Fertilizer application and nutrient management
+- Tool and equipment usage
+- Weather and seasonal considerations
+- Seed selection and planting methods
+- Pest and disease management
+- Agricultural machinery operation
+- Traditional and modern farming practices
+
+[QUESTION_FORMAT]
+- Multiple-choice with visual elements (many image-based questions)
+- Practical scenario questions
+- Equipment identification
+- Best practice scenarios
+- Calculation-based questions (fertilizer amounts, measurements, etc.)
+
+[RESTORATION_COMMAND]
+PowerShell: .\scripts\import-questions.ps1 -BackupFile "backup\agriculture-backup.txt"
+Output: tests/agriculture/agriculture-data.js
+
+[BACKUP_CONTENTS]
+✓ All agriculture questions with Nepali context
+✓ Image references for visual questions
+✓ Answer keys with explanations where applicable
+✓ Encoding: UTF-8 with BOM
+✓ Character support: Nepali (नेपाली) + English technical terms
+
+[NOTES]
+This test emphasizes practical agricultural knowledge relevant to Nepal.
+Many questions reference images showing farming techniques and tools.
+Image folder: ../../images/questions/agriculture/
+
+Full content in backup file.

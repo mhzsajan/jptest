@@ -1,0 +1,50 @@
+[BACKUP_REFERENCE_FILE]
+Test: Ground Handling Test
+Content Type: Airport & Aircraft Ground Services
+
+[TEST_METADATA]
+Title: Ground Handling Test
+Total Questions: 8
+Duration: 15 minutes
+Passing Score: 60%
+Language: English
+Date Backed Up: 2026-01-07
+
+[TEST_COVERAGE]
+- Safety equipment for ground personnel
+- Aircraft approach protocols and hazards
+- Ground handling vehicles (tugs, carts)
+- Equipment inspection and maintenance
+- Manual cargo handling limits
+- Communication systems for ground staff
+- Hazard reporting procedures
+- Safe distance protocols from aircraft
+
+[QUESTION_DETAILS]
+Q1: Primary safety equipment
+Q2: Aircraft approach hazards (propellers)
+Q3: Aircraft towing equipment (tug/tow tractor)
+Q4: Equipment inspection frequency
+Q5: Manual handling weight limits
+Q6: Mandatory communication devices
+Q7: Hazard reporting procedures
+Q8: Safe distance from moving aircraft
+
+[RESTORATION_COMMAND]
+PowerShell: .\scripts\import-questions.ps1 -BackupFile "backup\ground-handling-backup.txt"
+Output: tests/ground-handling/ground-handling-data.js
+
+[BACKUP_CONTENTS]
+✓ 8 safety-focused questions
+✓ English language content
+✓ Aviation industry standard procedures
+✓ All answer keys verified
+✓ Encoding: UTF-8
+✓ Technical terminology preserved
+
+[CONTEXT]
+Brief certification test for airport ground handling personnel.
+Focuses on safety protocols and equipment operation.
+English language suitable for international airport environments.
+
+Full content in backup file.

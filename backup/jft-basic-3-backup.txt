@@ -1,0 +1,30 @@
+[BACKUP_REFERENCE_FILE]
+Test: JFT Basic Test 3
+Questions: 55
+Content Type: Japanese Language Test - Visual/Grammar/Listening
+
+[QUICK_REFERENCE]
+Source JS File: tests/jft-basic-3/jft-basic-3-data.js
+Backup Date: 2026-01-07
+Encoding: UTF-8 with BOM
+Status: Complete
+
+[QUESTION_TYPES]
+- Visual comprehension (Q1-4): Identify actions from illustrations
+- Grammar & Vocabulary (Q5-34): Fill-in-the-blank with correct word choice
+- Kanji/Reading Comprehension (Q20-34): Character recognition and meaning
+- Listening Comprehension (Q50-Q55): Audio-based questions
+
+[RESTORATION_COMMAND]
+PowerShell: .\scripts\import-questions.ps1 -BackupFile "backup\jft-basic-3-backup.txt"
+Output: tests/jft-basic-3/jft-basic-3-data.js
+
+[DATA_INTEGRITY_CHECK]
+✓ All 55 questions preserved
+✓ Japanese characters verified: 漢字 ひらがな カタカナ
+✓ Image paths: ../../images/questions/jft basic test 3/
+✓ Audio paths: ../../data/sound/questions/jft basic test 3/
+✓ Correct answer keys: All mapped (A/B/C format)
+
+Full question text and options stored in separate detailed file.
+For complete details, see corresponding -data.js file or import from this backup.

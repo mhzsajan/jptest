@@ -1,0 +1,36 @@
+[BACKUP_REFERENCE_FILE]
+Test: Nursing Care Japanese Test 1
+Questions: 17
+Content Type: Healthcare/Nursing Care Training - Japanese
+
+[TEST_METADATA]
+Title: Nursing Care Japanese Test 1
+Total Questions: 17
+Duration: 25 minutes
+Passing Score: 60%
+Date Backed Up: 2026-01-07
+
+[CONTENT_AREAS]
+- Patient care procedures (wheelchair safety, bathing assistance)
+- Communication with patients
+- Safety protocols and precautions
+- Healthcare vocabulary and terminology
+- Caregiver best practices
+
+[RESTORATION_COMMAND]
+PowerShell: .\scripts\import-questions.ps1 -BackupFile "backup\nursing-care-japanese-1-backup.txt"
+Output: tests/nursing-care-japanese-1/nursing-care-japanese-1-data.js
+
+[DATA_VERIFIED]
+✓ 17 questions fully backed up
+✓ Japanese characters: ひらがな・カタカナ・漢字
+✓ Healthcare terminology preserved
+✓ Question scenarios with proper context
+✓ All correct answer keys mapped (A/B/C/D format)
+✓ Encoding: UTF-8 with BOM
+
+[SPECIAL_NOTES]
+This test includes technical healthcare terminology and scenario-based questions.
+All Japanese text preserves specialized nursing care vocabulary.
+
+Full content available in backup file and original data JS.

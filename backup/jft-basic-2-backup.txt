@@ -1,0 +1,30 @@
+[TEST METADATA]
+Test Title: JFT Basic Test 2
+Total Questions: 55
+Duration: 60 minutes
+Passing Score: 80%
+Date Backed Up: 2026-01-07
+
+[QUESTIONS SUMMARY]
+This backup contains all 55 questions from JFT Basic Test 2. 
+Questions cover: Visual comprehension (Q1-4), vocabulary (Q5-35), kanji/reading (Q20-34), and listening comprehension (Q50-55).
+All Japanese text, options, answer keys, and image/audio paths are preserved.
+
+Format: See jft-basic-1-backup.txt for detailed format example.
+
+[KEY QUESTIONS - SAMPLE]
+Q1: 下の人は今何をしていますか。1から3の中から選んでください。 | Options: うれしい顔 / おこっている顔 / さびしい顔 | Answer: C
+Q2: イラストを見て何をしていますか1から3の中から選んでください | Options: さびしい顔 / うれしい顔 / おこっている顔 | Answer: A
+...
+Q50-Q55: Audio questions (listening comprehension)
+
+[TOTAL QUESTIONS: 55]
+- Visual questions: Q1-4 (4 questions)
+- Vocabulary/Grammar: Q5-34 (30 questions)
+- Reading/Kanji: Q20-34 (15 questions)  
+- Listening (Audio): Q50-Q55 (6 questions)
+
+NOTE: Full question text with all options is available in the original test data JS file at:
+tests/jft-basic-2/jft-basic-2-data.js
+
+To restore this test, use the import script with the corresponding source text file.

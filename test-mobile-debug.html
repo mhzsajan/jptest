@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mobile Debug Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    
+    .debug-info {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .screen-width {
+      font-size: 24px;
+      font-weight: bold;
+      color: #1976d2;
+      margin: 10px 0;
+    }
+    
+    .breakpoint-info {
+      background: #e3f2fd;
+      padding: 10px;
+      border-radius: 4px;
+      margin: 5px 0;
+      border-left: 4px solid #1976d2;
+    }
+    
+    .counter-demo {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .question-counter-container {
+      display: flex;
+      justify-content: flex-start;
+      margin: 0 0 1.5rem 0;
+      gap: 0.75rem;
+    }
+
+    .question-counter {
+      background: #1976d2;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      box-shadow: 0 2px 8px rgba(25, 118, 210, 0.3);
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .go-to-question-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-left: auto;
+    }
+
+    .go-to-question-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #333;
+      white-space: nowrap;
+    }
+
+    .go-to-question-input {
+      width: 80px;
+      padding: 0.65rem 0.75rem;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .go-to-question-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      padding: 8px;
+      border: 2px solid #1976d2;
+      background: #1976d2;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    /* Tablet: 768px and below */
+    @media (max-width: 768px) {
+      .question-counter-container {
+        flex-direction: row;
+        gap: 0.6rem;
+      }
+
+      .go-to-question-wrapper {
+        gap: 0.25rem;
+      }
+
+      .go-to-question-label {
+        font-size: 0.75rem;
+      }
+
+      .go-to-question-input {
+        width: 60px;
+        padding: 0.4rem 0.4rem;
+        font-size: 0.8rem;
+      }
+
+      .go-to-question-btn {
+        width: 36px;
+        height: 36px;
+        padding: 6px;
+      }
+
+      .question-counter {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+      }
+    }
+
+    /* Mobile: 480px and below */
+    @media (max-width: 480px) {
+      .question-counter-container {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .go-to-question-wrapper {
+        width: 100%;
+        gap: 0.2rem;
+        flex-wrap: nowrap;
+      }
+
+      .go-to-question-label {
+        font-size: 0.65rem;
+        flex-shrink: 0;
+      }
+
+      .go-to-question-input {
+        width: 45px;
+        padding: 0.35rem 0.25rem;
+        font-size: 0.75rem;
+        flex: 1;
+        min-width: 40px;
+      }
+
+      .go-to-question-btn {
+        width: 32px;
+        height: 32px;
+        padding: 5px;
+        flex-shrink: 0;
+      }
+
+      .question-counter {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        padding: 0.4rem 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="debug-info">
+    <h2>📱 Mobile Breakpoint Debug</h2>
+    <div class="screen-width">
+      Current Width: <span id="screenWidth">0</span>px
+    </div>
+    <div class="breakpoint-info" id="breakpointInfo"></div>
+    <p style="color: #666; margin-top: 15px;">
+      <strong>How to test:</strong> Resize your browser window or open DevTools (F12) and use device emulation to test different screen sizes.
+    </p>
+  </div>
+
+  <div class="counter-demo">
+    <h3>Question Counter Demo (with current breakpoint styles applied)</h3>
+    <div class="question-counter-container">
+      <div class="question-counter" id="questionCounter">Question 1 of 55</div>
+      
+      <div class="go-to-question-wrapper">
+        <label class="go-to-question-label">Go to Q#</label>
+        <input type="number" id="goToQuestionInput" class="go-to-question-input" min="1">
+        <button id="goToQuestionBtn" class="go-to-question-btn">→</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function updateScreenInfo() {
+      const width = window.innerWidth;
+      document.getElementById('screenWidth').textContent = width;
+      
+      let breakpoint = 'Desktop (>768px)';
+      if (width <= 768) breakpoint = 'Tablet (≤768px)';
+      if (width <= 480) breakpoint = 'Mobile (≤480px)';
+      
+      const info = document.getElementById('breakpointInfo');
+      info.innerHTML = `<strong>Current Breakpoint:</strong> ${breakpoint}`;
+    }
+
+    window.addEventListener('resize', updateScreenInfo);
+    updateScreenInfo();
+  </script>
+</body>
+</html>

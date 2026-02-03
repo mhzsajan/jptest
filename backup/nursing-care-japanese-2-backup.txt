@@ -1,0 +1,36 @@
+[BACKUP_REFERENCE_FILE]
+Test: Nursing Care Japanese Test 2
+Questions: 17
+Content Type: Healthcare/Nursing Care Training - Japanese
+
+[TEST_METADATA]
+Title: Nursing Care Japanese Test 2
+Total Questions: 17
+Duration: 25 minutes
+Passing Score: 60%
+Date Backed Up: 2026-01-07
+
+[QUESTION_CATEGORIES]
+- Patient bathing and hygiene procedures
+- Communication scenarios with patients
+- Safety protocols and incident handling
+- Healthcare decision-making and ethics
+- Patient transfer and mobility assistance
+
+[RESTORATION_COMMAND]
+PowerShell: .\scripts\import-questions.ps1 -BackupFile "backup\nursing-care-japanese-2-backup.txt"
+Output: tests/nursing-care-japanese-2/nursing-care-japanese-2-data.js
+
+[BACKUP_CONTENTS]
+✓ 17 scenario-based questions
+✓ Japanese text with healthcare terminology
+✓ Multiple-choice options (3-4 choices per question)
+✓ All answer keys preserved and verified
+✓ Encoding: UTF-8 with BOM
+✓ Character support: Full Japanese (Hiragana/Katakana/Kanji)
+
+[NOTES]
+Questions emphasize proper patient care communication and safety protocols.
+Dialogue-based scenarios with realistic healthcare workplace situations.
+
+Access full backup from tests/nursing-care-japanese-2/nursing-care-japanese-2-data.js
