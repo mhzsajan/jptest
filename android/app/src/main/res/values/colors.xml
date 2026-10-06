@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand blue, matching the Food Service category accent in the site. -->
+    <color name="brand">#FF1565C0</color>
+    <color name="brand_dark">#FF0D47A1</color>
+    <color name="icon_bg">#FF1565C0</color>
+</resources>
