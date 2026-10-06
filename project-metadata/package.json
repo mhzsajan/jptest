@@ -1,11 +1,11 @@
 {
   "name": "jft-mock-test-platform",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Comprehensive static mock test platform for Japanese language proficiency tests (JFT), nursing care exams, and more. Built with vanilla HTML, CSS, and JavaScript.",
-  "homepage": "https://github.com/mhzsajan/jptestapk",
+  "homepage": "https://mhzsajan.github.io/jptest/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mhzsajan/jptestapk.git"
+    "url": "https://github.com/mhzsajan/jptest.git"
   },
   "author": {
     "name": "Sajan Maharjan",
@@ -39,7 +39,7 @@
   "devDependencies": {},
   "dependencies": {},
   "bugs": {
-    "url": "https://github.com/mhzsajan/jptestapk/issues"
+    "url": "https://github.com/mhzsajan/jptest/issues"
   },
   "features": [
     "Fixed control bar with time display",
@@ -51,7 +51,7 @@
     "Multiple test categories",
     "Progress tracking and timers",
     "Mobile-friendly interface",
-    "Offline-capable static site"
+    "Installable Android app (android/ in this repo, requires network)"
   ],
   "testCategories": [
     "JFT Basic 1-4",

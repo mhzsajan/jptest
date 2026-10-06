@@ -9,10 +9,29 @@ so shipping an app update to fix a typo would be absurd.
 |---|---|
 | Source | `android/` in this repo |
 | Built artifact | `apk/jptest-2.0.0.apk` |
+| Release page | <https://github.com/mhzsajan/jptest/releases/tag/v2.0.0> |
+| SHA-256 | `670385AD5C25576A4939243DF274A3C933513382907D1A8EECD6831D7E2DA10C` |
 | Application ID | `com.example.jptest` |
 | Loads | `https://mhzsajan.github.io/jptest/` |
 | Minimum Android | 5.0 (API 21) |
 | Target API | 35 |
+
+### Where downloads come from
+
+The APK is published in **two** places, and the site footer links to both:
+
+1. **In this repository**, at `apk/jptest-<version>.apk`, served by GitHub Pages
+   from the same CDN as the site itself. This is the "APK v2.0.0" link.
+2. **As a GitHub Release asset** on the `jptest` repository. This is the
+   "Release notes" link.
+
+The in-repo copy is the faster download and needs no cross-origin redirect, which
+is why it is the primary link. The release is the canonical, versioned artifact
+and is where release notes live.
+
+Both previously pointed somewhere useless: the old footer on **eleven** test pages
+offered a Google Drive link and a link to the `jptestapk` repository, and both
+served the broken Flutter app.
 
 ## Why this exists
 
@@ -95,8 +114,28 @@ keytool -genkeypair -v -keystore $env:USERPROFILE\.android\jptest-release.jks `
 2. Copy it to `apk/` under the new version number.
 3. In `android/app/build.gradle.kts`, bump `versionCode` **and** `versionName`.
    Android only accepts an upgrade if `versionCode` increases.
-4. Update the download link in `index.html` (footer, "Download Android App").
+4. Update the download link in **every** page footer, not just `index.html` —
+   the twelve `tests/*/index.html` files carry their own copy of the footer and
+   are the easiest thing to forget. Search the repository for `apk/jptest-` and
+   for `releases/tag/` and make sure every hit points at the new version.
 5. Commit and push. Pages rebuilds on its own — no deploy step exists.
+6. Create the release and attach the artifact:
+
+   ```powershell
+   gh release create v2.1.0 "apk\jptest-2.1.0.apk#jptest-2.1.0.apk" `
+     --repo mhzsajan/jptest --target main `
+     --title "JFT Mock Test — Android app v2.1.0" `
+     --notes-file release-notes.md
+   ```
+
+7. Verify the published asset is byte-identical to what you built. Do not assume:
+
+   ```powershell
+   Invoke-WebRequest -Uri `
+     "https://github.com/mhzsajan/jptest/releases/download/v2.1.0/jptest-2.1.0.apk" `
+     -OutFile check.apk
+   (Get-FileHash check.apk -Algorithm SHA256).Hash
+   ```
 
 ## Behaviour worth knowing about
 
