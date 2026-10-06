@@ -41,6 +41,25 @@ function closeDropdowns(event) {
   }
 }
 
+// Resolve the platform root from this script's own URL.
+//
+// The UI sounds used to be addressed as '../../data/sound/ui/click.wav'. That is
+// correct from tests/<name>/index.html, but on the home page it escapes the site
+// entirely: served at /jptest/, the '../..' lands on the domain root and every
+// UI sound 404s. Deriving the root from the script URL makes these paths correct
+// from any page depth, and whether the site is served from a domain root, a
+// /jptest/ subpath, or a local folder.
+const SITE_ROOT = (function () {
+  const src = (document.currentScript && document.currentScript.src) || '';
+  const m = src.match(/^(.*?)\/data\/js\/main\.js/);
+  return m ? m[1] + '/' : '';
+})();
+
+// Build a URL for a file in the platform's data/ tree.
+function siteAsset(path) {
+  return SITE_ROOT + String(path).replace(/^[/\\]+/, '');
+}
+
 // Sound management functions
 const SoundManager = {
   enabled: true,
@@ -65,7 +84,7 @@ const SoundManager = {
     }
     // Preload a small pool of click Audio elements to allow overlapping clicks
     try {
-      const clickPath = '../../data/sound/ui/click.wav';
+      const clickPath = siteAsset('data/sound/ui/click.wav');
       for (let i = 0; i < this._clickPoolSize; i++) {
         const a = new Audio(clickPath);
         a.preload = 'auto';
@@ -128,29 +147,29 @@ const SoundManager = {
         return a;
       } catch (err) {
         console.warn('Click pool play failed, falling back:', err);
-        return this.playSound('../../data/sound/ui/click.wav');
+        return this.playSound(siteAsset('data/sound/ui/click.wav'));
       }
     }
 
     // fallback to one-off play
-    return this.playSound('../../data/sound/ui/click.wav');
+    return this.playSound(siteAsset('data/sound/ui/click.wav'));
   },
   
   playSuccess: function() {
-    return this.playSound('../../data/sound/ui/success.wav');
+    return this.playSound(siteAsset('data/sound/ui/success.wav'));
   },
   
   playError: function() {
-    return this.playSound('../../data/sound/ui/error.wav');
+    return this.playSound(siteAsset('data/sound/ui/error.wav'));
   },
   
   playTimerBeep: function() {
-    return this.playSound('../../data/sound/ui/timer-beep.mp3');
+    return this.playSound(siteAsset('data/sound/ui/timer-beep.mp3'));
   },
   
   // Play question audio (for listening tests)
   playQuestionAudio: function(testType, audioFile) {
-    return this.playSound(`../../data/sound/questions/${testType}/${audioFile}`);
+    return this.playSound(siteAsset(`data/sound/questions/${testType}/${audioFile}`));
   },
   
   // Get current sound status

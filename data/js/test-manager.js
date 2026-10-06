@@ -552,7 +552,7 @@ class MockTest {
       // Use SoundManager if available, otherwise create new Audio
       if (window.SoundManager && window.SoundManager.isEnabled()) {
         // Play multiple beeps for emphasis
-        const audioPath = '../../data/sound/ui/timer-beep.mp3';
+        const audioPath = siteAsset('data/sound/ui/timer-beep.mp3');
         for (let i = 0; i < 3; i++) {
           setTimeout(() => {
             const audio = new Audio(audioPath);
