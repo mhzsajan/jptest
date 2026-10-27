@@ -1,175 +1,201 @@
 package com.example.jptest;
 
-import android.annotation.SuppressLint;
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Build;
+import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
-import android.webkit.ConsoleMessage;
-import android.webkit.WebChromeClient;
-import android.webkit.WebResourceError;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
-/**
- * Thin WebView wrapper around the JFT mock-test platform, which is a static site
- * served from GitHub Pages. There is no bundled copy of the site: the APK is a
- * launcher, and the content always comes from the network.
- *
- * Design notes that matter for this particular site:
- *  - DOM storage MUST be on. The platform keeps the unlocked state, the dark-mode
- *    preference and the "play audio twice" counters in localStorage; without it
- *    the password gate and the theme toggle silently fail.
- *  - configChanges in the manifest keeps this activity alive across rotation, so
- *    an in-progress timed test is not reloaded and its countdown is not reset.
- *  - beforeunload is not honoured by Android WebView, so the site's own custom
- *    warning modals are the only thing standing between a mis-tap and a lost test.
- *    The hardware back button therefore routes through WebView.goBack() first.
- *  - Links that leave the platform host are handed to the system browser rather
- *    than loaded in-app, so the app can never be navigated somewhere unexpected.
- *  - SSL errors are NOT overridden. Letting a WebView proceed on an invalid
- *    certificate would silently defeat the password gate and the test integrity
- *    this app exists to support.
- */
-public class MainActivity extends android.app.Activity {
+public class MainActivity extends Activity {
 
-    /** The single origin this app is allowed to display. */
-    private static final String HOME_URL = "https://mhzsajan.github.io/jptest/";
-    private static final String HOME_HOST = "mhzsajan.github.io";
+    private static final int TAB_EXAMS = 0;
+    private static final int TAB_RUNNER = 1;
+    private static final int TAB_HISTORY = 2;
+    private static final int TAB_GUIDE = 3;
 
-    private WebView webView;
-    private long lastBackPressedAt = 0L;
+    private ScoreStore scoreStore;
 
-    @SuppressLint("SetJavaScriptEnabled")
+    private FrameLayout contentFrame;
+    private LinearLayout bottomNav;
+
+    private ExamHubView examHubView;
+    private ExamRunnerView examRunnerView;
+    private ScoreHistoryView scoreHistoryView;
+    private GuideView guideView;
+
+    private int activeTab = TAB_EXAMS;
+    private long lastBackPressedTime = 0L;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        UiTheme.setStatusAndNavBar(this);
 
-        webView = new WebView(this);
-        setContentView(webView);
+        scoreStore = new ScoreStore(this);
 
-        WebSettings s = webView.getSettings();
-        // The platform is a JS application; without this it renders as a blank page.
-        s.setJavaScriptEnabled(true);
-        // Required: password state and dark-mode preference live in localStorage.
-        s.setDomStorageEnabled(true);
-        // Respect the site's own <meta name="viewport"> rather than WebView's
-        // legacy 980px default, which would render the mobile layout at desktop
-        // width and then scale it down.
-        s.setUseWideViewPort(true);
-        s.setLoadWithOverviewMode(true);
-        s.setSupportZoom(true);
-        s.setBuiltInZoomControls(true);
-        s.setDisplayZoomControls(false);
-        // Nothing in the platform is loaded from the filesystem.
-        s.setAllowFileAccess(false);
-        s.setAllowContentAccess(false);
-        // Audio must start from a user gesture. The site gates every clip behind
-        // a play button, so this costs nothing and blocks autoplay abuse.
-        s.setMediaPlaybackRequiresUserGesture(true);
-        s.setCacheMode(WebSettings.LOAD_DEFAULT);
+        LinearLayout root = new LinearLayout(this);
+        root.setOrientation(LinearLayout.VERTICAL);
+        root.setBackgroundColor(UiTheme.BG_CANVAS);
 
-        webView.setWebViewClient(new WebViewClient() {
+        // Main content container
+        contentFrame = new FrameLayout(this);
+        LinearLayout.LayoutParams contentParams = new LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT, 0, 1
+        );
+        root.addView(contentFrame, contentParams);
+
+        // Instantiate Views
+        examHubView = new ExamHubView(this, scoreStore, this::launchExam);
+
+        examRunnerView = new ExamRunnerView(this, scoreStore, new ExamRunnerView.ExamRunnerListener() {
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                return handleUrl(request.getUrl());
+            public void onExamFinished() {
+                examHubView.refreshStats();
+                examHubView.renderExams();
+                scoreHistoryView.refresh();
             }
 
             @Override
-            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
-                // Only surface a failure for the main frame; a missing image or a
-                // blocked font must not replace a perfectly good page with an error.
-                if (request != null && request.isForMainFrame()) {
-                    Toast.makeText(MainActivity.this,
-                            "Could not load the test platform.\nCheck your internet connection and try again.",
-                            Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                view.setVisibility(View.VISIBLE);
+            public void onRequestExit() {
+                switchTab(TAB_EXAMS);
+                examHubView.refreshStats();
+                examHubView.renderExams();
+                scoreHistoryView.refresh();
             }
         });
 
-        webView.setWebChromeClient(new WebChromeClient() {
-            @Override
-            public boolean onConsoleMessage(ConsoleMessage m) {
-                return true;
-            }
-        });
+        scoreHistoryView = new ScoreHistoryView(this, scoreStore, () -> switchTab(TAB_EXAMS));
+        guideView = new GuideView(this);
 
-        if (savedInstanceState != null) {
-            webView.restoreState(savedInstanceState);
-        } else {
-            webView.loadUrl(HOME_URL);
-        }
+        // Bottom Navigation Bar
+        bottomNav = createBottomNav();
+        root.addView(bottomNav, new LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT, UiTheme.dp(this, 58)
+        ));
+
+        setContentView(root);
+
+        // Start on Exams Hub
+        switchTab(TAB_EXAMS);
     }
 
-    /**
-     * @return true if the URL was consumed (i.e. do not load it in the WebView).
-     */
-    private boolean handleUrl(Uri uri) {
-        if (uri == null) {
-            return false;
-        }
-        String scheme = uri.getScheme();
-        String host = uri.getHost();
+    public void launchExam(ExamItem exam) {
+        switchTab(TAB_RUNNER);
+        examRunnerView.loadExam(exam);
+    }
 
-        boolean isWebScheme = "http".equalsIgnoreCase(scheme) || "https".equalsIgnoreCase(scheme);
-        boolean isHome = HOME_HOST.equalsIgnoreCase(host);
+    private LinearLayout createBottomNav() {
+        LinearLayout nav = new LinearLayout(this);
+        nav.setOrientation(LinearLayout.HORIZONTAL);
+        nav.setBackgroundColor(UiTheme.BRAND_NAVY);
+        nav.setWeightSum(4);
+        nav.setElevation(UiTheme.dp(this, 8));
 
-        if (isWebScheme && isHome) {
-            return false; // stay in-app
+        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1);
+
+        nav.addView(createNavItem("📚", "Exams", TAB_EXAMS), p);
+        nav.addView(createNavItem("⏱️", "Test Run", TAB_RUNNER), p);
+        nav.addView(createNavItem("📊", "History", TAB_HISTORY), p);
+        nav.addView(createNavItem("ℹ️", "Guide", TAB_GUIDE), p);
+
+        return nav;
+    }
+
+    private View createNavItem(String icon, String label, final int tabIndex) {
+        LinearLayout item = new LinearLayout(this);
+        item.setOrientation(LinearLayout.VERTICAL);
+        item.setGravity(Gravity.CENTER);
+        item.setClickable(true);
+
+        TextView iconTv = new TextView(this);
+        iconTv.setText(icon);
+        iconTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+        iconTv.setGravity(Gravity.CENTER);
+        iconTv.setTag("icon_" + tabIndex);
+        item.addView(iconTv);
+
+        TextView labelTv = new TextView(this);
+        labelTv.setText(label);
+        labelTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 11);
+        labelTv.setGravity(Gravity.CENTER);
+        labelTv.setTypeface(Typeface.DEFAULT_BOLD);
+        labelTv.setTag("label_" + tabIndex);
+        item.addView(labelTv);
+
+        item.setOnClickListener(v -> switchTab(tabIndex));
+        item.setTag("item_" + tabIndex);
+        return item;
+    }
+
+    private void switchTab(int tabIndex) {
+        activeTab = tabIndex;
+        contentFrame.removeAllViews();
+
+        View targetView;
+        switch (tabIndex) {
+            case TAB_RUNNER:
+                targetView = examRunnerView;
+                break;
+            case TAB_HISTORY:
+                scoreHistoryView.refresh();
+                targetView = scoreHistoryView;
+                break;
+            case TAB_GUIDE:
+                targetView = guideView;
+                break;
+            case TAB_EXAMS:
+            default:
+                examHubView.refreshStats();
+                targetView = examHubView;
+                break;
         }
 
-        // Anything else (the WhatsApp contact link, the Google Drive download,
-        // github.com) goes to the system handler.
-        try {
-            startActivity(new Intent(Intent.ACTION_VIEW, uri));
-        } catch (ActivityNotFoundException e) {
-            Toast.makeText(this, "No app can open this link.", Toast.LENGTH_SHORT).show();
+        contentFrame.addView(targetView, new FrameLayout.LayoutParams(
+            FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT
+        ));
+
+        // Update nav appearance
+        for (int i = 0; i < 4; i++) {
+            TextView labelTv = bottomNav.findViewWithTag("label_" + i);
+            if (labelTv != null) {
+                boolean active = (i == tabIndex);
+                labelTv.setTextColor(active ? UiTheme.BRAND_PRIMARY_LIGHT : UiTheme.TEXT_MUTED);
+                labelTv.setTypeface(active ? Typeface.DEFAULT_BOLD : Typeface.DEFAULT);
+            }
         }
-        return true;
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public void onBackPressed() {
-        if (webView != null && webView.canGoBack()) {
-            webView.goBack();
+        if (activeTab == TAB_RUNNER && examRunnerView.isExamRunning()) {
+            examRunnerView.confirmExit();
             return;
         }
-        // Confirm before dropping the user out of an exam.
+
+        if (activeTab != TAB_EXAMS) {
+            switchTab(TAB_EXAMS);
+            return;
+        }
+
         long now = System.currentTimeMillis();
-        if (now - lastBackPressedAt < 2000L) {
+        if (now - lastBackPressedTime < 2000L) {
             finish();
         } else {
-            lastBackPressedAt = now;
-            Toast.makeText(this, "Press back again to close the app.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        if (webView != null) {
-            webView.saveState(outState);
+            lastBackPressedTime = now;
+            Toast.makeText(this, "Press back again to exit JFT Mock Test.", Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     protected void onDestroy() {
-        if (webView != null) {
-            webView.loadUrl("about:blank");
-            webView.destroy();
-            webView = null;
+        if (examRunnerView != null) {
+            examRunnerView.onDestroy();
         }
         super.onDestroy();
     }

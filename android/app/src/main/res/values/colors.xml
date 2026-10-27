@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Brand blue, matching the Food Service category accent in the site. -->
-    <color name="brand">#FF1565C0</color>
-    <color name="brand_dark">#FF0D47A1</color>
-    <color name="icon_bg">#FF1565C0</color>
+    <!-- JFT & SSW Brand Colors -->
+    <color name="brand">#FFD32F2F</color>
+    <color name="brand_dark">#FFB71C1C</color>
+    <color name="brand_light">#FFFFCDD2</color>
+    <color name="accent_blue">#FF1565C0</color>
+    <color name="accent_green">#FF2E7D32</color>
+    <color name="accent_purple">#FF7B1FA2</color>
+    <color name="accent_orange">#FFE65100</color>
+    <color name="accent_teal">#FF00897B</color>
+    <color name="accent_pink">#FFC2185B</color>
+    <color name="surface_dark">#FF0F172A</color>
+    <color name="surface_dark_card">#FF1E293B</color>
+    <color name="surface_light">#FFF8FAFC</color>
+    <color name="icon_bg">#FFD32F2F</color>
 </resources>
